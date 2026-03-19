@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Digest - {{ edition_date }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #e8e0d4;
+            color: #2c2c2c;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 20px auto;
+            background: #fdf6e3;
+            padding: 45px 55px;
+            box-shadow: 0 4px 40px rgba(0,0,0,0.15);
+        }
+
+        /* ── Masthead ── */
+        .masthead {
+            text-align: center;
+            padding-bottom: 22px;
+            margin-bottom: 32px;
+            border-bottom: 4px double #2c2c2c;
+        }
+        .masthead-rule { border: none; border-top: 1px solid #bbb; margin-bottom: 10px; }
+        .masthead h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 52px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .masthead .subtitle {
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #888;
+            margin-top: 4px;
+        }
+        .masthead .date-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #999;
+            margin-top: 12px;
+            border-top: 1px solid #ddd;
+            padding-top: 8px;
+        }
+
+        /* ── Section headers ── */
+        .section { margin-bottom: 40px; }
+        .section-header {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding-bottom: 8px;
+            margin-bottom: 22px;
+            border-bottom: 3px solid #2c2c2c;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .section-header .section-icon { font-size: 22px; }
+        .section-header .section-sub {
+            font-size: 12px;
+            font-weight: 400;
+            font-family: 'Source Sans Pro', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-left: auto;
+        }
+
+        /* ── World News ── */
+        .theme-label {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #fff;
+            background: #8b4513;
+            display: inline-block;
+            padding: 3px 12px;
+            margin: 18px 0 12px;
+        }
+        .theme-label:first-child { margin-top: 0; }
+
+        /* Hero article (first one) */
+        .article-hero {
+            margin-bottom: 24px;
+        }
+        .article-hero .article-hero-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 14px;
+        }
+        .article-hero h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+        .article-hero h3 a { color: #2c2c2c; text-decoration: none; }
+        .article-hero h3 a:hover { color: #8b4513; }
+        .article-hero .source {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .article-hero .summary {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* Regular articles with optional thumbnail */
+        .article {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e8e0d0;
+        }
+        .article:last-child { border-bottom: none; }
+        .article-text { flex: 1; }
+        .article-thumb {
+            width: 140px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        .article h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 3px;
+        }
+        .article h3 a { color: #2c2c2c; text-decoration: none; }
+        .article h3 a:hover { color: #8b4513; }
+        .article .source {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+        .article .summary {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* ── Twitter section ── */
+        .twitter-opening {
+            font-size: 16px;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+            border-radius: 8px;
+            border-left: 4px solid #1da1f2;
+        }
+        .discussions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .discussion {
+            padding: 16px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e4e8ec;
+            transition: box-shadow 0.2s;
+        }
+        .discussion:hover {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .discussion .topic {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .discussion .author {
+            font-size: 12px;
+            color: #1da1f2;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .discussion .disc-summary {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .breaking-news {
+            background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+            padding: 14px 18px;
+            border-left: 4px solid #ff9800;
+            border-radius: 0 6px 6px 0;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+        .breaking-news strong {
+            color: #e65100;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* ── Product Hunt section ── */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .product {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #e8e0d0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+        .product:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .product .product-number {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #f0ebe0;
+            line-height: 1;
+        }
+        .product .product-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #da552f 0%, #f56040 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 20px;
+            color: white;
+            font-weight: 700;
+        }
+        .product h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            line-height: 1.3;
+        }
+        .product h3 a { color: #2c2c2c; text-decoration: none; }
+        .product h3 a:hover { color: #da552f; }
+        .product .tagline {
+            font-size: 12px;
+            color: #da552f;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .product .description {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+        /* Make first product span full width as featured */
+        .products-grid .product:first-child {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .products-grid .product:first-child .product-icon {
+            width: 56px;
+            height: 56px;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .products-grid .product:first-child .product-content { flex: 1; }
+
+        /* ── Error ── */
+        .section-error {
+            padding: 16px 20px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            color: #991b1b;
+            font-size: 14px;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 10px;
+            border-top: 3px solid #2c2c2c;
+            font-size: 11px;
+            color: #aaa;
+            letter-spacing: 1px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .container { padding: 24px 20px; margin: 0; }
+            .masthead h1 { font-size: 32px; }
+            .discussions-grid, .products-grid { grid-template-columns: 1fr; }
+            .article { flex-direction: column-reverse; }
+            .article-thumb { width: 100%; height: 160px; }
+            .article-hero .article-hero-img { height: 200px; }
+            .products-grid .product:first-child { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Masthead -->
+        <header class="masthead">
+            <hr class="masthead-rule">
+            <h1>The Daily Digest</h1>
+            <div class="subtitle">Your Personal News Briefing</div>
+            <div class="date-line">
+                <span>Edition No. {{ edition_number }}</span>
+                <span>{{ edition_date }}</span>
+                <span>Curated by Claude</span>
+            </div>
+        </header>
+
+        <!-- Section 1: World News -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#127758;</span> World News
+                <span class="section-sub">Business &middot; Tech &middot; AI &middot; Economics &middot; Politics</span>
+            </h2>
+            {% if world_news.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable. {{ world_news.get("error", "") }}</div>
+            {% else %}
+                {% set current_theme = namespace(value="") %}
+                {% for article in world_news.articles %}
+                    {% if article.theme is defined and article.theme != current_theme.value %}
+                        {% set current_theme.value = article.theme %}
+                        <div class="theme-label">{{ article.theme }}</div>
+                    {% endif %}
+
+                    {% if loop.first and article.image_url %}
+                        {# Hero treatment for first article with image #}
+                        <div class="article-hero">
+                            <img class="article-hero-img" src="{{ article.image_url }}" alt="{{ article.headline }}" onerror="this.style.display='none'">
+                            <h3><a href="{{ article.url }}" target="_blank">{{ article.headline }}</a></h3>
+                            <div class="source">{{ article.source }}</div>
+                            <div class="summary">{{ article.summary }}</div>
+                        </div>
+                    {% else %}
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="{{ article.url }}" target="_blank">{{ article.headline }}</a></h3>
+                                <div class="source">{{ article.source }}</div>
+                                <div class="summary">{{ article.summary }}</div>
+                            </div>
+                            {% if article.image_url %}
+                                <img class="article-thumb" src="{{ article.image_url }}" alt="" onerror="this.style.display='none'">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </section>
+
+        <!-- Section 2: Twitter Feed -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#120143;</span> From the Timeline
+                <span class="section-sub">X / Twitter</span>
+            </h2>
+            {% if twitter.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable. {{ twitter.get("error", "") }}</div>
+            {% elif twitter.tweet_count == 0 %}
+                <div class="section-error">{{ twitter.summary }}</div>
+            {% else %}
+                <div class="twitter-opening">{{ twitter.summary }}</div>
+                <div class="discussions-grid">
+                    {% for disc in twitter.top_discussions %}
+                        <div class="discussion">
+                            <div class="topic">{{ disc.topic }}</div>
+                            <div class="author">@{{ disc.author }}</div>
+                            <div class="disc-summary">{{ disc.summary }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if twitter.breaking_news %}
+                    <div class="breaking-news">
+                        <strong>Breaking &mdash;</strong>
+                        {% for news in twitter.breaking_news %}
+                            {{ news }}{% if not loop.last %}; {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        </section>
+
+        <!-- Section 3: Product Hunt -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#128640;</span> Products to Watch
+                <span class="section-sub">Product Hunt Picks</span>
+            </h2>
+            {% if product_hunt.status is defined and product_hunt.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable. {{ product_hunt.get("error", "") }}</div>
+            {% elif not product_hunt.products %}
+                <div class="section-error">{{ product_hunt.get("status_note", "No products available.") }}</div>
+            {% else %}
+                <div class="products-grid">
+                    {% for product in product_hunt.products %}
+                        <div class="product">
+                            <span class="product-number">{{ loop.index }}</span>
+                            {% if loop.first %}
+                                <div class="product-icon">{{ product.name[0] | upper }}</div>
+                                <div class="product-content">
+                                    <h3><a href="{{ product.url }}" target="_blank">{{ product.name }}</a></h3>
+                                    {% if product.tagline %}<div class="tagline">{{ product.tagline }}</div>{% endif %}
+                                    <div class="description">{{ product.description }}</div>
+                                </div>
+                            {% else %}
+                                <div class="product-icon">{{ product.name[0] | upper }}</div>
+                                <h3><a href="{{ product.url }}" target="_blank">{{ product.name }}</a></h3>
+                                {% if product.tagline %}<div class="tagline">{{ product.tagline }}</div>{% endif %}
+                                <div class="description">{{ product.description }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            Generated on {{ generated_at }} &middot; Powered by Claude
+        </footer>
+    </div>
+</body>
+</html>
