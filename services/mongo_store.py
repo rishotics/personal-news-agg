@@ -23,9 +23,11 @@ def get_next_edition_number() -> int:
 
 def save_edition(edition: dict) -> str:
     edition.setdefault("created_at", datetime.now(timezone.utc))
-    result = _editions.insert_one(edition)
-    logger.info("Saved edition %s (id: %s)", edition.get("date"), result.inserted_id)
-    return str(result.inserted_id)
+    date = edition.get("date")
+    result = _editions.replace_one({"date": date}, edition, upsert=True)
+    doc_id = result.upserted_id or date
+    logger.info("Saved edition %s (id: %s)", date, doc_id)
+    return str(doc_id)
 
 
 def get_edition_by_date(date_str: str) -> dict | None:

@@ -58,6 +58,62 @@
             padding-top: 8px;
         }
 
+        /* ── Market Ticker ── */
+        .market-ticker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-bottom: 30px;
+            background: #1a1a2e;
+            border-radius: 6px;
+            padding: 14px 18px;
+            overflow: hidden;
+        }
+        .market-ticker .ticker-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            width: 100%;
+        }
+        .market-ticker .ticker-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            width: 100%;
+            margin-bottom: 6px;
+            margin-top: 10px;
+        }
+        .market-ticker .ticker-label:first-child { margin-top: 0; }
+        .ticker-item {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            padding: 4px 14px 4px 0;
+            min-width: 120px;
+        }
+        .ticker-item .ticker-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #ccc;
+            letter-spacing: 0.5px;
+        }
+        .ticker-item .ticker-price {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            font-family: 'Source Sans Pro', monospace;
+        }
+        .ticker-item .ticker-change {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+        .ticker-change.up { color: #4ade80; background: rgba(74,222,128,0.1); }
+        .ticker-change.down { color: #f87171; background: rgba(248,113,113,0.1); }
+
         /* ── Section headers ── */
         .section { margin-bottom: 40px; }
         .section-header {
@@ -353,6 +409,68 @@
                 <span>Curated by Claude</span>
             </div>
         </header>
+
+        <!-- Market Ticker -->
+        {% if markets %}
+        <div class="market-ticker">
+            {% set indices = [] %}
+            {% set cryptos = [] %}
+            {% set commodities = [] %}
+            {% set forex = [] %}
+            {% for item in markets %}
+                {% if item.category == "index" %}{% if indices.append(item) %}{% endif %}
+                {% elif item.category == "crypto" %}{% if cryptos.append(item) %}{% endif %}
+                {% elif item.category == "commodity" %}{% if commodities.append(item) %}{% endif %}
+                {% elif item.category == "forex" %}{% if forex.append(item) %}{% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if indices %}
+            <div class="ticker-group">
+                <div class="ticker-label">Indices</div>
+                {% for item in indices %}
+                <div class="ticker-item">
+                    <span class="ticker-name">{{ item.name }}</span>
+                    <span class="ticker-price">{{ "{:,.0f}".format(item.price) }}</span>
+                    <span class="ticker-change {{ 'up' if item.change_pct >= 0 else 'down' }}">
+                        {{ "+" if item.change_pct >= 0 else "" }}{{ item.change_pct }}%
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if cryptos %}
+            <div class="ticker-group">
+                <div class="ticker-label">Crypto</div>
+                {% for item in cryptos %}
+                <div class="ticker-item">
+                    <span class="ticker-name">{{ item.name }}</span>
+                    <span class="ticker-price">${{ "{:,.0f}".format(item.price) }}</span>
+                    <span class="ticker-change {{ 'up' if item.change_pct >= 0 else 'down' }}">
+                        {{ "+" if item.change_pct >= 0 else "" }}{{ item.change_pct }}%
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if commodities or forex %}
+            <div class="ticker-group">
+                <div class="ticker-label">Commodities &amp; Forex</div>
+                {% for item in commodities + forex %}
+                <div class="ticker-item">
+                    <span class="ticker-name">{{ item.name }}</span>
+                    <span class="ticker-price">{{ "{:,.2f}".format(item.price) }}</span>
+                    <span class="ticker-change {{ 'up' if item.change_pct >= 0 else 'down' }}">
+                        {{ "+" if item.change_pct >= 0 else "" }}{{ item.change_pct }}%
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
 
         <!-- Section 1: World News -->
         <section class="section">

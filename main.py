@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from jinja2 import Environment, FileSystemLoader
 
 from config import OUTPUT_DIR, TEMPLATES_DIR
-from sections import world_news, twitter_feed, product_hunt
+from sections import world_news, twitter_feed, product_hunt, market_data
 from services import mongo_store, telegram_bot
 
 logging.basicConfig(
@@ -45,9 +45,17 @@ def render_html(context: dict) -> str:
     return template.render(**context)
 
 
-def build_telegram_summary(sections: dict, edition_date: str) -> str:
+def build_telegram_summary(sections: dict, edition_date: str, markets: dict | None = None) -> str:
     """Build a short Telegram summary message."""
     lines = [f"<b>The Daily Digest - {edition_date}</b>\n"]
+
+    # Market ticker in Telegram
+    if markets and markets.get("items"):
+        ticker_parts = []
+        for m in markets["items"]:
+            arrow = "+" if m["change_pct"] >= 0 else ""
+            ticker_parts.append(f"{m['name']} {arrow}{m['change_pct']}%")
+        lines.append(f"<b>Markets:</b> {' | '.join(ticker_parts[:6])}\n")
 
     wn = sections.get("world_news", {})
     if wn.get("status") == "success":
@@ -91,6 +99,14 @@ def main():
         if existing:
             logger.warning("Edition for %s already exists. Generating a new one.", date_str)
 
+    # Fetch market data (not a "section" — always runs, no Claude call)
+    logger.info("Fetching market data")
+    try:
+        markets = market_data.fetch()
+    except Exception as e:
+        logger.error("Market data failed: %s", e)
+        markets = {"items": []}
+
     # Run sections
     if args.section:
         sections = {args.section: run_section(args.section)}
@@ -113,6 +129,7 @@ def main():
         "world_news": sections.get("world_news", {}),
         "twitter": sections.get("twitter", {}),
         "product_hunt": sections.get("product_hunt", {}),
+        "markets": markets.get("items", []),
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
     }
 
@@ -138,7 +155,7 @@ def main():
 
     # Send via Telegram
     if not args.no_telegram and not args.section:
-        summary = build_telegram_summary(sections, edition_date)
+        summary = build_telegram_summary(sections, edition_date, markets)
         telegram_bot.send_summary(summary)
         telegram_bot.send_html_file(html_path, caption=f"Daily Digest - {edition_date}")
         logger.info("Sent to Telegram")
