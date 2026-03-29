@@ -363,6 +363,220 @@
         }
         .products-grid .product:first-child .product-content { flex: 1; }
 
+        /* ── Funding Rounds section ── */
+        .funding-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .funding-table th {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #999;
+            text-align: left;
+            padding: 8px 10px;
+            border-bottom: 2px solid #e8e0d0;
+        }
+        .funding-table td {
+            padding: 10px;
+            border-bottom: 1px solid #f0ebe0;
+            vertical-align: top;
+        }
+        .funding-table tr:last-child td { border-bottom: none; }
+        .funding-table .company-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .funding-table .company-name a { color: #2c2c2c; text-decoration: none; }
+        .funding-table .company-name a:hover { color: #16a34a; }
+        .funding-table .company-summary {
+            font-size: 12px;
+            color: #777;
+            margin-top: 2px;
+        }
+        .funding-amount {
+            font-weight: 700;
+            font-size: 15px;
+            color: #16a34a;
+        }
+        .sector-pill {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .sector-pill.sector-ai { background: #dbeafe; color: #1e40af; }
+        .sector-pill.sector-crypto { background: #ede9fe; color: #5b21b6; }
+        .sector-pill.sector-fintech { background: #d1fae5; color: #065f46; }
+        .sector-pill.sector-dev-tools { background: #ffedd5; color: #9a3412; }
+        .sector-pill.sector-other { background: #f3f4f6; color: #374151; }
+
+        /* ── YC Batch section ── */
+        .yc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .yc-company {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #e8e0d0;
+        }
+        .yc-company:last-child { border-bottom: none; }
+        .yc-number {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #e0dbd0;
+            min-width: 28px;
+            text-align: right;
+            line-height: 1;
+            padding-top: 4px;
+        }
+        .yc-content { flex: 1; }
+        .yc-content h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+        .yc-content h3 a { color: #2c2c2c; text-decoration: none; }
+        .yc-content h3 a:hover { color: #f97316; }
+        .yc-content .yc-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .yc-batch-tag {
+            font-size: 10px;
+            font-weight: 700;
+            background: #f97316;
+            color: white;
+            padding: 2px 7px;
+            border-radius: 3px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        /* ── India Startups section ── */
+        .india-category-label {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            margin: 14px 0 10px;
+        }
+        .india-category-label:first-child { margin-top: 0; }
+        .india-category-label.cat-deal { background: #d1fae5; color: #065f46; }
+        .india-category-label.cat-policy { background: #dbeafe; color: #1e40af; }
+        .india-category-label.cat-launch { background: #fef3c7; color: #92400e; }
+        .india-item {
+            margin-bottom: 14px;
+            padding-left: 14px;
+            border-left: 3px solid #e8e0d0;
+        }
+        .india-item h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 3px;
+        }
+        .india-item h3 a { color: #2c2c2c; text-decoration: none; }
+        .india-item h3 a:hover { color: #f97316; }
+        .india-item .india-source {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+        .india-item .india-summary {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* ── AI Research section ── */
+        .papers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .paper {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #e8e0d0;
+            align-items: flex-start;
+        }
+        .paper:last-child { border-bottom: none; }
+        .paper-number {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #ddd;
+            line-height: 1;
+            min-width: 32px;
+            text-align: right;
+            padding-top: 2px;
+        }
+        .paper-content { flex: 1; }
+        .paper-category {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
+        .paper-category.cat-llm { background: #dbeafe; color: #1e40af; }
+        .paper-category.cat-vision { background: #fce7f3; color: #9d174d; }
+        .paper-category.cat-robotics { background: #d1fae5; color: #065f46; }
+        .paper-category.cat-ml-theory { background: #fef3c7; color: #92400e; }
+        .paper-category.cat-multimodal { background: #ede9fe; color: #5b21b6; }
+        .paper-category.cat-safety { background: #fee2e2; color: #991b1b; }
+        .paper-category.cat-agents { background: #ccfbf1; color: #115e59; }
+        .paper-category.cat-other { background: #f3f4f6; color: #374151; }
+        .paper h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 3px;
+        }
+        .paper h3 a { color: #2c2c2c; text-decoration: none; }
+        .paper h3 a:hover { color: #4338ca; }
+        .paper .paper-meta {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .paper .paper-meta .paper-lab {
+            color: #4338ca;
+            font-weight: 600;
+        }
+        .paper .paper-why {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
         /* ── Error ── */
         .section-error {
             padding: 16px 20px;
@@ -512,6 +726,119 @@
             {% endif %}
         </section>
 
+        <!-- Section: Funding Rounds -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#128176;</span> Funding Rounds
+                <span class="section-sub">AI &middot; Crypto &middot; Fintech</span>
+            </h2>
+            {% if funding_rounds.status is defined and funding_rounds.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable.</div>
+            {% elif not funding_rounds.rounds %}
+                <div class="section-error">No funding rounds available today.</div>
+            {% else %}
+                <table class="funding-table">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Round</th>
+                            <th>Amount</th>
+                            <th>Lead Investor</th>
+                            <th>Sector</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for round in funding_rounds.rounds %}
+                        <tr>
+                            <td>
+                                <div class="company-name"><a href="{{ round.url }}" target="_blank">{{ round.company }}</a></div>
+                                <div class="company-summary">{{ round.summary }}</div>
+                            </td>
+                            <td>{{ round.round_type }}</td>
+                            <td><span class="funding-amount">{{ round.amount }}</span></td>
+                            <td>{{ round.lead_investor }}</td>
+                            <td>
+                                {% set sector_lower = round.sector | default("Other") | lower | replace(" ", "-") | replace("/", "-") %}
+                                {% if "ai" in sector_lower %}{% set sector_class = "sector-ai" %}
+                                {% elif "crypto" in sector_lower or "web3" in sector_lower %}{% set sector_class = "sector-crypto" %}
+                                {% elif "fintech" in sector_lower %}{% set sector_class = "sector-fintech" %}
+                                {% elif "dev" in sector_lower or "tool" in sector_lower %}{% set sector_class = "sector-dev-tools" %}
+                                {% else %}{% set sector_class = "sector-other" %}{% endif %}
+                                <span class="sector-pill {{ sector_class }}">{{ round.sector }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </section>
+
+        <!-- Section: YC Batch -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#128640;</span> YC {{ yc_batch.batch | default("Latest") }}
+                <span class="section-sub">Interesting Companies from the Latest Batch</span>
+            </h2>
+            {% if yc_batch.status is defined and yc_batch.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable.</div>
+            {% elif not yc_batch.companies %}
+                <div class="section-error">No YC companies available today.</div>
+            {% else %}
+                <div class="yc-list">
+                    {% for company in yc_batch.companies %}
+                    <div class="yc-company">
+                        <div class="yc-number">{{ loop.index }}</div>
+                        <div class="yc-content">
+                            <h3>
+                                <a href="{{ company.url }}" target="_blank">{{ company.name }}</a>
+                                <span class="yc-batch-tag">{{ company.batch | default(yc_batch.batch) }}</span>
+                                {% set s = company.sector | default("Other") | lower %}
+                                {% if "ai" in s %}{% set sc = "sector-ai" %}
+                                {% elif "crypto" in s or "web3" in s %}{% set sc = "sector-crypto" %}
+                                {% elif "fintech" in s %}{% set sc = "sector-fintech" %}
+                                {% elif "dev" in s or "tool" in s or "infra" in s %}{% set sc = "sector-dev-tools" %}
+                                {% else %}{% set sc = "sector-other" %}{% endif %}
+                                <span class="sector-pill {{ sc }}">{{ company.sector }}</span>
+                            </h3>
+                            <div class="yc-desc">{{ company.description }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- Section: India Startups -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#127470;&#127475;</span> India Startup &amp; Tech
+                <span class="section-sub">Deals &middot; Policy &middot; Launches</span>
+            </h2>
+            {% if india_startups.status is defined and india_startups.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable.</div>
+            {% elif not india_news %}
+                <div class="section-error">No India startup news available today.</div>
+            {% else %}
+                {% set current_cat = namespace(value="") %}
+                {% set sorted_items = india_news | sort(attribute="category") %}
+                {% for item in sorted_items %}
+                    {% if item.category != current_cat.value %}
+                        {% set current_cat.value = item.category %}
+                        <div class="india-category-label cat-{{ item.category }}">
+                            {% if item.category == "deal" %}Deals
+                            {% elif item.category == "policy" %}Policy &amp; Regulation
+                            {% else %}Launches &amp; Milestones{% endif %}
+                        </div>
+                    {% endif %}
+                    <div class="india-item">
+                        <h3><a href="{{ item.url }}" target="_blank">{{ item.headline }}</a></h3>
+                        <div class="india-source">{{ item.source }}</div>
+                        <div class="india-summary">{{ item.summary }}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+
         <!-- Section 2: Twitter Feed -->
         <section class="section">
             <h2 class="section-header">
@@ -572,6 +899,37 @@
                                 {% if product.tagline %}<div class="tagline">{{ product.tagline }}</div>{% endif %}
                                 <div class="description">{{ product.description }}</div>
                             {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- Section 4: AI Research -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#129302;</span> Papers to Read
+                <span class="section-sub">AI &amp; Robotics Research</span>
+            </h2>
+            {% if ai_research.status is defined and ai_research.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable.</div>
+            {% elif not ai_research.papers %}
+                <div class="section-error">{{ ai_research.get("status_note", "No papers available today.") }}</div>
+            {% else %}
+                <div class="papers-list">
+                    {% for paper in ai_research.papers %}
+                        <div class="paper">
+                            <div class="paper-number">{{ loop.index }}</div>
+                            <div class="paper-content">
+                                {% set cat_class = "cat-" ~ (paper.category | default("Other") | lower | replace(" ", "-")) %}
+                                <span class="paper-category {{ cat_class }}">{{ paper.category | default("Other") }}</span>
+                                <h3><a href="{{ paper.url }}" target="_blank">{{ paper.title }}</a></h3>
+                                <div class="paper-meta">
+                                    <span class="paper-lab">{{ paper.lab | default("") }}</span>
+                                    {% if paper.authors %} &middot; {{ paper.authors }}{% endif %}
+                                </div>
+                                <div class="paper-why">{{ paper.why | default("") }}</div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

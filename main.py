@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from jinja2 import Environment, FileSystemLoader
 
 from config import OUTPUT_DIR, TEMPLATES_DIR
-from sections import world_news, twitter_feed, product_hunt, market_data
+from sections import world_news, twitter_feed, product_hunt, market_data, ai_research, funding_rounds, yc_batch, india_startups
 from services import mongo_store, telegram_bot
 
 logging.basicConfig(
@@ -20,8 +20,12 @@ logger = logging.getLogger(__name__)
 
 SECTION_MAP = {
     "world_news": ("World News", world_news.fetch),
+    "funding_rounds": ("Funding Rounds", funding_rounds.fetch),
+    "yc_batch": ("YC Batch", yc_batch.fetch),
+    "india_startups": ("India Startups", india_startups.fetch),
     "twitter": ("Twitter Feed", twitter_feed.fetch),
     "product_hunt": ("Product Hunt", product_hunt.fetch),
+    "ai_research": ("AI Research", ai_research.fetch),
 }
 
 
@@ -78,6 +82,35 @@ def build_telegram_summary(sections: dict, edition_date: str, markets: dict | No
     else:
         lines.append("<b>Product Hunt:</b> unavailable")
 
+    fr = sections.get("funding_rounds", {})
+    if fr.get("rounds"):
+        top = fr["rounds"][0]
+        lines.append(f"<b>Funding:</b> {fr.get('round_count', 0)} rounds — {top.get('company', '')} ({top.get('amount', '')})")
+    else:
+        lines.append("<b>Funding:</b> unavailable")
+
+    yc = sections.get("yc_batch", {})
+    if yc.get("companies"):
+        lines.append(f"<b>YC {yc.get('batch', '')}:</b> {yc.get('company_count', 0)} picks")
+    else:
+        lines.append("<b>YC Batch:</b> unavailable")
+
+    india = sections.get("india_startups", {})
+    if india.get("items"):
+        bd = india.get("breakdown", {})
+        parts = [f"{v} {k}s" for k, v in bd.items()]
+        lines.append(f"<b>India:</b> {', '.join(parts)}")
+    else:
+        lines.append("<b>India:</b> unavailable")
+
+    ar = sections.get("ai_research", {})
+    if ar.get("papers"):
+        count = len(ar["papers"])
+        first = ar["papers"][0].get("title", "")[:50]
+        lines.append(f"<b>AI Research:</b> {count} papers — {first}...")
+    else:
+        lines.append("<b>AI Research:</b> unavailable")
+
     lines.append('\n<a href="https://news.rishotics.com">Read full edition</a>')
     return "\n".join(lines)
 
@@ -129,6 +162,12 @@ def main():
         "world_news": sections.get("world_news", {}),
         "twitter": sections.get("twitter", {}),
         "product_hunt": sections.get("product_hunt", {}),
+        "ai_research": sections.get("ai_research", {}),
+        "funding_rounds": sections.get("funding_rounds", {}),
+        "yc_batch": sections.get("yc_batch", {}),
+        "india_startups": sections.get("india_startups", {}),
+        # Rename 'items' key to avoid clash with dict.items() in Jinja2
+        "india_news": sections.get("india_startups", {}).get("items", []),
         "markets": markets.get("items", []),
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
     }

@@ -1,11 +1,17 @@
 # Personal News Aggregator
 
-Daily newspaper-style aggregator with 3 sections, delivered as styled HTML + Telegram message.
+Daily newspaper-style aggregator with 7 sections, delivered as styled HTML + Telegram message.
+Hosted at news.rishotics.com (Vercel), generated daily at 6 AM IST via EC2 cron.
 
 ## Sections
 1. **World News** - Business, tech, AI, economics, politics from RSS feeds + optional NewsAPI
-2. **X/Twitter Feed** - Summary of tweets from key accounts via X API search
-3. **Product Hunt** - 5 randomly picked top products with AI-generated descriptions
+2. **Funding Rounds** - 5-8 notable AI/crypto/fintech funding rounds from TechCrunch, Crunchbase, The Block, CoinDesk
+3. **YC Batch** - 5-8 interesting companies from the latest Y Combinator batch (via Claude web search)
+4. **India Startups** - 5-8 items covering Indian startup deals, policy/regulatory updates, and notable launches
+5. **X/Twitter Feed** - Summary of tweets from key accounts via X API search (falls back to tech news RSS)
+6. **Product Hunt** - 5 randomly picked top products with AI-generated descriptions
+7. **AI Research** - Top 8 papers from arxiv + Hugging Face daily papers
+8. **Market Ticker** - S&P 500, NASDAQ, Nifty 50, BTC, ETH, SOL, Gold, Oil, USD/INR (no Claude call)
 
 ## Tech Stack
 - Python 3.11+
@@ -17,10 +23,11 @@ Daily newspaper-style aggregator with 3 sections, delivered as styled HTML + Tel
 ## Project Structure
 - `main.py` - Orchestrator, run with `python main.py`
 - `config.py` - All configuration, loads .env
-- `sections/` - One module per newspaper section (world_news, twitter_feed, product_hunt)
+- `sections/` - One module per newspaper section
 - `services/` - Shared services (claude_client, telegram_bot, mongo_store)
 - `templates/newspaper.html` - Jinja2 HTML template
-- `output/` - Generated HTML files (gitignored)
+- `output/` - Generated HTML files (gitignored except index.html)
+- `deploy/` - EC2 setup scripts
 
 ## Running
 ```bash
@@ -38,6 +45,9 @@ python main.py --section world_news  # single section test
 
 ## Design Principles
 - Each section fails independently (graceful degradation)
-- ~3 Claude API calls per run (one per section)
-- Twitter uses search/recent with `from:` operators (app-only auth limitation)
-- Product Hunt scraped from front page (no API key needed)
+- ~7 Claude API calls per run (one per section, market data has none)
+- Twitter uses search/recent with `from:` operators; falls back to tech news RSS when credits depleted
+- Product Hunt sourced from RSS feed (no API key needed)
+- YC batch uses Claude web search as primary data source
+- India startups sourced from Inc42, YourStory, ET Tech, Entrackr, Livemint RSS
+- AI research from arxiv RSS (cs.AI, cs.CL, cs.CV, cs.LG, cs.RO) + Hugging Face daily papers

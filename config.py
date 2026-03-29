@@ -52,8 +52,31 @@ TWITTER_ACCOUNTS = [
     "GoogleDeepMind",
 ]
 
+# Funding Rounds RSS feeds
+FUNDING_RSS_FEEDS = [
+    "https://techcrunch.com/category/venture/feed/",
+    "https://news.crunchbase.com/feed/",
+    "https://www.theblock.co/rss/all",
+    "https://www.coindesk.com/arc/outboundfeeds/rss/",
+]
+
+# India Startup RSS feeds
+INDIA_RSS_FEEDS = [
+    "https://inc42.com/feed/",
+    "https://yourstory.com/feed",
+    "https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms",
+    "https://entrackr.com/feed/",
+    "https://www.livemint.com/rss/technology",
+]
+
+# YC Batch
+MAX_YC_PICKS = 8
+YC_SECTORS_OF_INTEREST = ["AI", "crypto", "fintech", "developer tools", "infrastructure"]
+
 # Limits
 MAX_ARTICLES_BEFORE_DEDUP = 50
 MAX_CURATED_ARTICLES = 10
 MAX_TWEETS_PER_SEARCH = 100
 PRODUCT_HUNT_PICK_COUNT = 5
+MAX_FUNDING_ITEMS = 8
+MAX_INDIA_ITEMS = 8
