@@ -1,7 +1,7 @@
 import json
 import logging
 from dataclasses import dataclass, asdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 
 import feedparser
@@ -9,6 +9,7 @@ import requests
 
 from config import RSS_FEEDS, NEWS_API_KEY, MAX_ARTICLES_BEFORE_DEDUP, MAX_CURATED_ARTICLES
 from services.claude_client import summarize
+from services.mongo_store import get_edition_by_date
 
 logger = logging.getLogger(__name__)
 
@@ -116,6 +117,19 @@ def fetch() -> dict:
         for a in deduped
     )
 
+    # Get yesterday's headlines to avoid repeats
+    yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
+    prev_headlines = ""
+    try:
+        prev_edition = get_edition_by_date(yesterday)
+        if prev_edition:
+            prev_articles = prev_edition.get("sections", {}).get("world_news", {}).get("articles", [])
+            if prev_articles:
+                headlines = [a.get("headline", "") for a in prev_articles]
+                prev_headlines = f"\n\nAVOID repeating these stories from yesterday's edition:\n" + "\n".join(f"- {h}" for h in headlines)
+    except Exception:
+        pass  # MongoDB unavailable, skip dedup
+
     system_prompt = f"""You are a newspaper editor curating a daily world news briefing.
 Given the articles below, produce exactly {MAX_CURATED_ARTICLES} curated news items covering business, tech, AI, economics, and politics.
 Group items by theme. For each item provide:
@@ -123,6 +137,7 @@ Group items by theme. For each item provide:
 - summary (2 sentences max)
 - source (original publication name)
 - url (original article link)
+{prev_headlines}
 
 Return valid JSON: a list of objects with keys: headline, summary, source, url, theme."""
 
