@@ -83,9 +83,14 @@ def build_telegram_summary(sections: dict, edition_date: str, markets: dict | No
         lines.append("<b>Product Hunt:</b> unavailable")
 
     fr = sections.get("funding_rounds", {})
-    if fr.get("rounds"):
-        top = fr["rounds"][0]
-        lines.append(f"<b>Funding:</b> {fr.get('round_count', 0)} rounds — {top.get('company', '')} ({top.get('amount', '')})")
+    early = fr.get("early_stage") or []
+    signal = fr.get("later_stage_signal") or []
+    if early or signal:
+        parts = []
+        if early:
+            top = early[0]
+            parts.append(f"top: {top.get('company', '')} ({top.get('round_type', '')} {top.get('amount', '')})")
+        lines.append(f"<b>Funding:</b> {len(early)} early-stage, {len(signal)} signal — {' / '.join(parts) if parts else ''}")
     else:
         lines.append("<b>Funding:</b> unavailable")
 
@@ -191,6 +196,15 @@ def main():
             "telegram_sent": False,
         }
         mongo_store.save_edition(edition)
+
+        # Record featured funding companies for 7-day dedup
+        fr = sections.get("funding_rounds", {})
+        if fr.get("status") == "success":
+            featured = (fr.get("early_stage") or []) + (fr.get("later_stage_signal") or [])
+            try:
+                mongo_store.record_featured_companies(featured, date_str)
+            except Exception as e:
+                logger.warning("Failed to record featured funding companies: %s", e)
 
     # Send via Telegram
     if not args.no_telegram and not args.section:

@@ -58,6 +58,26 @@ FUNDING_RSS_FEEDS = [
     "https://news.crunchbase.com/feed/",
     "https://www.theblock.co/rss/all",
     "https://www.coindesk.com/arc/outboundfeeds/rss/",
+    "https://www.strictlyvc.com/feed/",
+    "https://api.axios.com/feed/pro-rata",
+    "https://fortune.com/section/term-sheet/feed/",
+]
+
+# Funding section tuning
+FUNDING_RECENCY_HOURS = 72
+FUNDING_DEDUP_DAYS = 7
+FUNDING_EARLY_STAGE_COUNT = 6
+FUNDING_SIGNAL_COUNT = 2
+# URL/title fragments that signal a recap article (drop these to avoid stale rounds)
+FUNDING_RECAP_PATTERNS = [
+    "biggest-funding-rounds",
+    "funding-roundup",
+    "weekly-recap",
+    "this-week-in-",
+    "biggest-rounds-of",
+    "week-in-vc",
+    "week-in-venture",
+    "rounds-recap",
 ]
 
 # India Startup RSS feeds
@@ -80,3 +100,6 @@ MAX_TWEETS_PER_SEARCH = 100
 PRODUCT_HUNT_PICK_COUNT = 5
 MAX_FUNDING_ITEMS = 8
 MAX_INDIA_ITEMS = 8
+
+# MongoDB collection names
+MONGO_FEATURED_FUNDING_COLLECTION = "featured_funding_companies"

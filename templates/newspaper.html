@@ -364,44 +364,119 @@
         .products-grid .product:first-child .product-content { flex: 1; }
 
         /* ── Funding Rounds section ── */
-        .funding-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        .funding-table th {
+        .funding-subhead {
             font-family: 'Source Sans Pro', sans-serif;
             font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #999;
-            text-align: left;
-            padding: 8px 10px;
-            border-bottom: 2px solid #e8e0d0;
+            letter-spacing: 2.5px;
+            color: #888;
+            margin: 4px 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .funding-table td {
-            padding: 10px;
-            border-bottom: 1px solid #f0ebe0;
-            vertical-align: top;
+        .funding-subhead::after {
+            content: "";
+            flex: 1;
+            border-top: 1px solid #d8d2c4;
         }
-        .funding-table tr:last-child td { border-bottom: none; }
-        .funding-table .company-name {
+        .funding-subhead.signal { color: #5b3a1e; margin-top: 24px; }
+        .early-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 16px;
+        }
+        .early-card {
+            border: 1px solid #e8dec8;
+            border-left: 3px solid #16a34a;
+            border-radius: 4px;
+            padding: 12px 14px;
+            background: #fbf7ec;
+        }
+        .early-card .row1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .early-card .company {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 17px;
+            line-height: 1.2;
         }
-        .funding-table .company-name a { color: #2c2c2c; text-decoration: none; }
-        .funding-table .company-name a:hover { color: #16a34a; }
-        .funding-table .company-summary {
+        .early-card .company a { color: #2c2c2c; text-decoration: none; }
+        .early-card .company a:hover { color: #16a34a; }
+        .early-card .stage-amount {
             font-size: 12px;
-            color: #777;
+            font-weight: 700;
+            color: #16a34a;
+            white-space: nowrap;
+        }
+        .early-card .stage-amount .stage {
+            color: #888;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .early-card .row2 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .early-card .lead {
+            font-size: 11px;
+            color: #6b6258;
+            font-style: italic;
+        }
+        .early-card .blurb {
+            font-size: 13px;
+            color: #4a443a;
+            line-height: 1.45;
+        }
+        .signal-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .signal-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 0;
+            border-bottom: 1px dotted #d8d2c4;
+        }
+        .signal-item:last-child { border-bottom: none; }
+        .signal-item .head {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .signal-item .head a { color: #2c2c2c; text-decoration: none; }
+        .signal-item .head a:hover { color: #b45309; }
+        .signal-item .meta {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .signal-item .reason {
+            font-size: 13px;
+            color: #4a443a;
+            line-height: 1.5;
+            border-left: 2px solid #d4a256;
+            padding-left: 10px;
             margin-top: 2px;
         }
-        .funding-amount {
+        .signal-item .reason b {
+            color: #5b3a1e;
             font-weight: 700;
-            font-size: 15px;
-            color: #16a34a;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 10px;
+            margin-right: 6px;
         }
         .sector-pill {
             display: inline-block;
@@ -416,7 +491,14 @@
         .sector-pill.sector-crypto { background: #ede9fe; color: #5b21b6; }
         .sector-pill.sector-fintech { background: #d1fae5; color: #065f46; }
         .sector-pill.sector-dev-tools { background: #ffedd5; color: #9a3412; }
+        .sector-pill.sector-defense { background: #fee2e2; color: #991b1b; }
+        .sector-pill.sector-climate { background: #ccfbf1; color: #115e59; }
+        .sector-pill.sector-bio { background: #fce7f3; color: #9d174d; }
+        .sector-pill.sector-consumer { background: #fef3c7; color: #92400e; }
         .sector-pill.sector-other { background: #f3f4f6; color: #374151; }
+        @media (max-width: 640px) {
+            .early-grid { grid-template-columns: 1fr; }
+        }
 
         /* ── YC Batch section ── */
         .yc-list {
@@ -730,46 +812,67 @@
         <section class="section">
             <h2 class="section-header">
                 <span class="section-icon">&#128176;</span> Funding Rounds
-                <span class="section-sub">AI &middot; Crypto &middot; Fintech</span>
+                <span class="section-sub">Curated for Founders &middot; Early Stage First</span>
             </h2>
             {% if funding_rounds.status is defined and funding_rounds.status == "error" %}
                 <div class="section-error">This section is temporarily unavailable.</div>
-            {% elif not funding_rounds.rounds %}
+            {% elif not funding_rounds.early_stage and not funding_rounds.later_stage_signal %}
                 <div class="section-error">No funding rounds available today.</div>
             {% else %}
-                <table class="funding-table">
-                    <thead>
-                        <tr>
-                            <th>Company</th>
-                            <th>Round</th>
-                            <th>Amount</th>
-                            <th>Lead Investor</th>
-                            <th>Sector</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for round in funding_rounds.rounds %}
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="{{ round.url }}" target="_blank">{{ round.company }}</a></div>
-                                <div class="company-summary">{{ round.summary }}</div>
-                            </td>
-                            <td>{{ round.round_type }}</td>
-                            <td><span class="funding-amount">{{ round.amount }}</span></td>
-                            <td>{{ round.lead_investor }}</td>
-                            <td>
-                                {% set sector_lower = round.sector | default("Other") | lower | replace(" ", "-") | replace("/", "-") %}
-                                {% if "ai" in sector_lower %}{% set sector_class = "sector-ai" %}
-                                {% elif "crypto" in sector_lower or "web3" in sector_lower %}{% set sector_class = "sector-crypto" %}
-                                {% elif "fintech" in sector_lower %}{% set sector_class = "sector-fintech" %}
-                                {% elif "dev" in sector_lower or "tool" in sector_lower %}{% set sector_class = "sector-dev-tools" %}
-                                {% else %}{% set sector_class = "sector-other" %}{% endif %}
-                                <span class="sector-pill {{ sector_class }}">{{ round.sector }}</span>
-                            </td>
-                        </tr>
+                {% macro sector_class(sector) -%}
+                    {%- set s = sector | default("Other") | lower -%}
+                    {%- if "ai" in s -%}sector-ai
+                    {%- elif "crypto" in s or "web3" in s -%}sector-crypto
+                    {%- elif "fintech" in s -%}sector-fintech
+                    {%- elif "dev" in s or "tool" in s or "infra" in s -%}sector-dev-tools
+                    {%- elif "defense" in s -%}sector-defense
+                    {%- elif "climate" in s or "energy" in s -%}sector-climate
+                    {%- elif "bio" in s or "health" in s -%}sector-bio
+                    {%- elif "consumer" in s -%}sector-consumer
+                    {%- else -%}sector-other
+                    {%- endif -%}
+                {%- endmacro %}
+
+                {% if funding_rounds.early_stage %}
+                    <div class="funding-subhead">Early Stage</div>
+                    <div class="early-grid">
+                        {% for r in funding_rounds.early_stage %}
+                        <div class="early-card">
+                            <div class="row1">
+                                <div class="company"><a href="{{ r.url }}" target="_blank">{{ r.company }}</a></div>
+                                <div class="stage-amount"><span class="stage">{{ r.round_type }}</span>{{ r.amount }}</div>
+                            </div>
+                            <div class="row2">
+                                <span class="sector-pill {{ sector_class(r.sector) }}">{{ r.sector }}</span>
+                                <span class="lead">led by {{ r.lead_investor }}</span>
+                            </div>
+                            <div class="blurb">{{ r.summary }}</div>
+                        </div>
                         {% endfor %}
-                    </tbody>
-                </table>
+                    </div>
+                {% endif %}
+
+                {% if funding_rounds.later_stage_signal %}
+                    <div class="funding-subhead signal">Later-Stage Signal</div>
+                    <div class="signal-list">
+                        {% for r in funding_rounds.later_stage_signal %}
+                        <div class="signal-item">
+                            <div class="head">
+                                <a href="{{ r.url }}" target="_blank">{{ r.company }}</a>
+                                <span class="sector-pill {{ sector_class(r.sector) }}">{{ r.sector }}</span>
+                            </div>
+                            <div class="meta">
+                                {{ r.round_type }} &middot; {{ r.amount }}{% if r.valuation and r.valuation != "Undisclosed" %} @ {{ r.valuation }} val{% endif %} &middot; led by {{ r.lead_investor }}
+                            </div>
+                            {% if r.signal_reason %}
+                                <div class="reason"><b>Why it matters</b>{{ r.signal_reason }}</div>
+                            {% else %}
+                                <div class="reason">{{ r.summary }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             {% endif %}
         </section>
 
