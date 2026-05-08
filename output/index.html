@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Daily Digest - May 07, 2026</title>
+    <title>The Daily Digest - May 08, 2026</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
 
@@ -364,44 +364,119 @@
         .products-grid .product:first-child .product-content { flex: 1; }
 
         /* ── Funding Rounds section ── */
-        .funding-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        .funding-table th {
+        .funding-subhead {
             font-family: 'Source Sans Pro', sans-serif;
             font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #999;
-            text-align: left;
-            padding: 8px 10px;
-            border-bottom: 2px solid #e8e0d0;
+            letter-spacing: 2.5px;
+            color: #888;
+            margin: 4px 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .funding-table td {
-            padding: 10px;
-            border-bottom: 1px solid #f0ebe0;
-            vertical-align: top;
+        .funding-subhead::after {
+            content: "";
+            flex: 1;
+            border-top: 1px solid #d8d2c4;
         }
-        .funding-table tr:last-child td { border-bottom: none; }
-        .funding-table .company-name {
+        .funding-subhead.signal { color: #5b3a1e; margin-top: 24px; }
+        .early-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 16px;
+        }
+        .early-card {
+            border: 1px solid #e8dec8;
+            border-left: 3px solid #16a34a;
+            border-radius: 4px;
+            padding: 12px 14px;
+            background: #fbf7ec;
+        }
+        .early-card .row1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .early-card .company {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 17px;
+            line-height: 1.2;
         }
-        .funding-table .company-name a { color: #2c2c2c; text-decoration: none; }
-        .funding-table .company-name a:hover { color: #16a34a; }
-        .funding-table .company-summary {
+        .early-card .company a { color: #2c2c2c; text-decoration: none; }
+        .early-card .company a:hover { color: #16a34a; }
+        .early-card .stage-amount {
             font-size: 12px;
-            color: #777;
+            font-weight: 700;
+            color: #16a34a;
+            white-space: nowrap;
+        }
+        .early-card .stage-amount .stage {
+            color: #888;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .early-card .row2 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .early-card .lead {
+            font-size: 11px;
+            color: #6b6258;
+            font-style: italic;
+        }
+        .early-card .blurb {
+            font-size: 13px;
+            color: #4a443a;
+            line-height: 1.45;
+        }
+        .signal-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .signal-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 0;
+            border-bottom: 1px dotted #d8d2c4;
+        }
+        .signal-item:last-child { border-bottom: none; }
+        .signal-item .head {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .signal-item .head a { color: #2c2c2c; text-decoration: none; }
+        .signal-item .head a:hover { color: #b45309; }
+        .signal-item .meta {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .signal-item .reason {
+            font-size: 13px;
+            color: #4a443a;
+            line-height: 1.5;
+            border-left: 2px solid #d4a256;
+            padding-left: 10px;
             margin-top: 2px;
         }
-        .funding-amount {
+        .signal-item .reason b {
+            color: #5b3a1e;
             font-weight: 700;
-            font-size: 15px;
-            color: #16a34a;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 10px;
+            margin-right: 6px;
         }
         .sector-pill {
             display: inline-block;
@@ -416,7 +491,14 @@
         .sector-pill.sector-crypto { background: #ede9fe; color: #5b21b6; }
         .sector-pill.sector-fintech { background: #d1fae5; color: #065f46; }
         .sector-pill.sector-dev-tools { background: #ffedd5; color: #9a3412; }
+        .sector-pill.sector-defense { background: #fee2e2; color: #991b1b; }
+        .sector-pill.sector-climate { background: #ccfbf1; color: #115e59; }
+        .sector-pill.sector-bio { background: #fce7f3; color: #9d174d; }
+        .sector-pill.sector-consumer { background: #fef3c7; color: #92400e; }
         .sector-pill.sector-other { background: #f3f4f6; color: #374151; }
+        @media (max-width: 640px) {
+            .early-grid { grid-template-columns: 1fr; }
+        }
 
         /* ── YC Batch section ── */
         .yc-list {
@@ -618,8 +700,8 @@
             <h1>The Daily Digest</h1>
             <div class="subtitle">Your Personal News Briefing</div>
             <div class="date-line">
-                <span>Edition No. 53</span>
-                <span>May 07, 2026</span>
+                <span>Edition No. 55</span>
+                <span>May 08, 2026</span>
                 <span>Curated by Claude</span>
             </div>
         </header>
@@ -678,57 +760,57 @@
                 
                 <div class="ticker-item">
                     <span class="ticker-name">S&P 500</span>
-                    <span class="ticker-price">7,365</span>
-                    <span class="ticker-change up">
-                        +1.46%
+                    <span class="ticker-price">7,337</span>
+                    <span class="ticker-change down">
+                        -0.38%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">NASDAQ</span>
-                    <span class="ticker-price">25,839</span>
-                    <span class="ticker-change up">
-                        +2.02%
+                    <span class="ticker-price">25,806</span>
+                    <span class="ticker-change down">
+                        -0.13%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Dow Jones</span>
-                    <span class="ticker-price">49,911</span>
-                    <span class="ticker-change up">
-                        +1.24%
+                    <span class="ticker-price">49,597</span>
+                    <span class="ticker-change down">
+                        -0.63%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Nifty 50</span>
-                    <span class="ticker-price">24,331</span>
-                    <span class="ticker-change up">
-                        +1.24%
+                    <span class="ticker-price">24,327</span>
+                    <span class="ticker-change down">
+                        -0.02%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Sensex</span>
-                    <span class="ticker-price">77,959</span>
-                    <span class="ticker-change up">
-                        +1.22%
+                    <span class="ticker-price">77,845</span>
+                    <span class="ticker-change down">
+                        -0.15%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">FTSE 100</span>
-                    <span class="ticker-price">10,439</span>
-                    <span class="ticker-change up">
-                        +2.15%
+                    <span class="ticker-price">10,277</span>
+                    <span class="ticker-change down">
+                        -1.55%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Nikkei 225</span>
-                    <span class="ticker-price">62,181</span>
-                    <span class="ticker-change up">
-                        +4.48%
+                    <span class="ticker-price">62,634</span>
+                    <span class="ticker-change down">
+                        -0.32%
                     </span>
                 </div>
                 
@@ -741,25 +823,25 @@
                 
                 <div class="ticker-item">
                     <span class="ticker-name">BTC</span>
-                    <span class="ticker-price">$81,082</span>
+                    <span class="ticker-price">$79,725</span>
                     <span class="ticker-change down">
-                        -0.07%
+                        -1.62%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">SOL</span>
                     <span class="ticker-price">$88</span>
-                    <span class="ticker-change up">
-                        +2.01%
+                    <span class="ticker-change down">
+                        -0.13%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">ETH</span>
-                    <span class="ticker-price">$2,327</span>
+                    <span class="ticker-price">$2,283</span>
                     <span class="ticker-change down">
-                        -1.73%
+                        -1.76%
                     </span>
                 </div>
                 
@@ -772,23 +854,23 @@
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Gold</span>
-                    <span class="ticker-price">4,702.60</span>
+                    <span class="ticker-price">4,723.00</span>
                     <span class="ticker-change up">
-                        +0.18%
+                        +0.26%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Crude Oil</span>
-                    <span class="ticker-price">96.25</span>
+                    <span class="ticker-price">96.15</span>
                     <span class="ticker-change up">
-                        +1.23%
+                        +1.41%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">USD/INR</span>
-                    <span class="ticker-price">94.60</span>
+                    <span class="ticker-price">94.24</span>
                     <span class="ticker-change up">
                         +0.0%
                     </span>
@@ -810,16 +892,16 @@
                 
                     
                         
-                        <div class="theme-label">Politics</div>
+                        <div class="theme-label">politics</div>
                     
 
                     
                         
                         <div class="article-hero">
-                            <img class="article-hero-img" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b568/live/479e7760-498d-11f1-9cba-7526402c46eb.png" alt="Iran Considering US Peace Proposal as Markets Rally on Deal Hopes" onerror="this.style.display='none'">
-                            <h3><a href="https://www.bbc.com/news/articles/cj0pq2q8221o?at_medium=RSS&at_campaign=rss" target="_blank">Iran Considering US Peace Proposal as Markets Rally on Deal Hopes</a></h3>
+                            <img class="article-hero-img" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5bde/live/e5f4b280-4a64-11f1-ba67-71539f117a06.jpg" alt="Trump Faces Legal Setback as Trade Court Rules Global Tariff Illegal" onerror="this.style.display='none'">
+                            <h3><a href="https://www.bbc.com/news/articles/cp3pyk4nw3lo?at_medium=RSS&at_campaign=rss" target="_blank">Trump Faces Legal Setback as Trade Court Rules Global Tariff Illegal</a></h3>
                             <div class="source">BBC News</div>
-                            <div class="summary">The White House reportedly believes it could be closing in on a 14-point memorandum of understanding with Iran to end the war. Oil prices dropped and stock markets rose on reports of potential agreement after days of escalation.</div>
+                            <div class="summary">A federal trade court ruled that President Trump's 10% global tariff policy violated US law. The ruling came as Trump issued a deadline to the European Union to approve a trade deal.</div>
                         </div>
                     
                 
@@ -828,30 +910,60 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.bbc.com/news/articles/crmpjjl02l2o?at_medium=RSS&at_campaign=rss" target="_blank">Israel Strikes Beirut for First Time Since Hezbollah Ceasefire</a></h3>
+                                <h3><a href="https://www.bbc.com/news/articles/cwy2d0v3p2po?at_medium=RSS&at_campaign=rss" target="_blank">German Finance Minister Blames Trump's Iran War for Economic Slowdown</a></h3>
                                 <div class="source">BBC News</div>
-                                <div class="summary">Israel targeted a senior Hezbollah figure in the Lebanese capital, marking the first strike of its kind since mid-April. The attack comes amid ongoing tensions despite the previous ceasefire agreement.</div>
+                                <div class="summary">Finance Minister Lars Klingbeil blamed President Trump's "irresponsible war in Iran" for harming the German economy. The comments highlight growing tensions between the US and European allies over Middle East policy.</div>
                             </div>
                             
-                                <img class="article-thumb" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/fb1a/live/fc55db50-4981-11f1-b768-41eba02d8af8.jpg" alt="" onerror="this.style.display='none'">
+                                <img class="article-thumb" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3a50/live/05bdb9e0-4a38-11f1-a70d-c72ff4101914.jpg" alt="" onerror="this.style.display='none'">
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://www.bbc.com/news/articles/cd6p5l3n2q3o?at_medium=RSS&at_campaign=rss" target="_blank">Hamas Disarmament Talks Stall as Gaza War Fears Mount</a></h3>
+                                <div class="source">BBC News</div>
+                                <div class="summary">Israeli media reports suggest Israel is preparing to resume fighting due to an impasse in disarmament negotiations with Hamas. The stalled talks raise concerns about renewed conflict in Gaza.</div>
+                            </div>
+                            
+                                <img class="article-thumb" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a2c4/live/8d288e50-4a15-11f1-a7ce-b934bcb15ff4.jpg" alt="" onerror="this.style.display='none'">
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://www.bbc.com/news/articles/cwy2gj2jlr8o?at_medium=RSS&at_campaign=rss" target="_blank">Russia Holds Victory Day Parade Without Tanks for First Time in Decades</a></h3>
+                                <div class="source">BBC News</div>
+                                <div class="summary">For the first time in nearly two decades, Moscow's Victory Day parade featured only soldiers with no military hardware. The change is seen as a sign that the Ukraine war is not going according to plan.</div>
+                            </div>
+                            
+                                <img class="article-thumb" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/abcc/live/8dc39600-4a3a-11f1-bd52-e755d604ece4.jpg" alt="" onerror="this.style.display='none'">
                             
                         </div>
                     
                 
                     
                         
-                        <div class="theme-label">Business</div>
+                        <div class="theme-label">tech</div>
                     
 
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://arstechnica.com/tech-policy/2026/05/gamestop-offers-56-billion-for-ebay-struggles-to-explain-how-itll-pay-for-it/" target="_blank">GameStop Offers $56 Billion for eBay in Surprise Bid</a></h3>
-                                <div class="source">Ars Technica</div>
-                                <div class="summary">The struggling video game retailer has made an unsolicited offer for the much larger online marketplace. GameStop is struggling to explain how it will finance the acquisition amid falling revenue and store closures.</div>
+                                <h3><a href="https://www.nytimes.com/2026/05/07/business/spacex-chips-terafab.html" target="_blank">SpaceX Plans $55 Billion AI Chip Investment with New Terafab Factory</a></h3>
+                                <div class="source">NYT > Technology</div>
+                                <div class="summary">Elon Musk's rocket company announced plans for a massive semiconductor factory called Terafab as part of efforts to dominate artificial intelligence. The investment represents SpaceX's expansion beyond aerospace into AI infrastructure.</div>
                             </div>
                             
-                                <img class="article-thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/gamestop-store-500x500-1777915641.jpg" alt="" onerror="this.style.display='none'">
+                                <img class="article-thumb" src="https://static01.nyt.com/images/2026/05/07/multimedia/07SpaceX-fkcl/07SpaceX-fkcl-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
                             
                         </div>
                     
@@ -861,9 +973,24 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://techcrunch.com/2026/05/06/insurance-startup-corgi-hits-1-3b-valuation-4-months-after-its-series-a/" target="_blank">Insurance Startup Corgi Hits $1.3B Valuation Just 4 Months After Series A</a></h3>
+                                <h3><a href="https://www.nytimes.com/2026/05/06/technology/anthropic-ceo-ai-growth.html" target="_blank">Anthropic CEO Projects 80x Growth Rate This Year</a></h3>
+                                <div class="source">NYT > Technology</div>
+                                <div class="summary">Dario Amodei said the rapid expansion has exponentially increased the AI startup's need for computing power. The aggressive growth projection highlights the intense scaling happening in the AI sector.</div>
+                            </div>
+                            
+                                <img class="article-thumb" src="https://static01.nyt.com/images/2026/05/06/multimedia/06BIZ-ANTHROPIC-mclj/06BIZ-ANTHROPIC-mclj-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://techcrunch.com/2026/05/07/openai-launches-new-voice-intelligence-features-in-its-api/" target="_blank">OpenAI Launches Voice Intelligence Features for Developers</a></h3>
                                 <div class="source">TechCrunch</div>
-                                <div class="summary">The insurance technology company announced a $160 million Series B funding round led by TCV. The rapid valuation increase highlights continued investor appetite for fintech startups.</div>
+                                <div class="summary">The new API features target customer service systems but have applications across education and creator platforms. OpenAI also introduced a 'Trusted Contact' safeguard for users expressing self-harm intentions.</div>
                             </div>
                             
                         </div>
@@ -871,18 +998,16 @@
                 
                     
                         
-                        <div class="theme-label">AI</div>
+                        <div class="theme-label">business</div>
                     
 
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.nytimes.com/2026/05/04/business/anthropic-blackstone-goldman-sachs-artificial-intelligence-firm.html" target="_blank">Anthropic Partners with Wall Street Giants to Create New AI Firm</a></h3>
-                                <div class="source">New York Times</div>
-                                <div class="summary">Blackstone and Goldman Sachs are among investors in the new company that will integrate Anthropic's Claude AI model into their systems. CEO Dario Amodei says Anthropic could grow by 80 times this year, exponentially increasing computing power needs.</div>
+                                <h3><a href="https://techcrunch.com/2026/05/07/ramp-in-talks-to-hit-40b-valuation-6-months-after-reaching-32b/" target="_blank">Ramp in Talks for $40B Valuation Just Six Months After $32B Round</a></h3>
+                                <div class="source">TechCrunch</div>
+                                <div class="summary">The expense management startup is reportedly raising another $750 million at a pre-money valuation exceeding $40 billion. The rapid valuation increase reflects strong growth in the fintech sector.</div>
                             </div>
-                            
-                                <img class="article-thumb" src="https://static01.nyt.com/images/2026/04/01/multimedia/04biz-Anthropic-Blackstone/04biz-Anthropic-Blackstone-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
                             
                         </div>
                     
@@ -892,70 +1017,25 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.nytimes.com/2026/05/04/technology/trump-ai-models.html" target="_blank">White House Considers Pre-Release Vetting of AI Models</a></h3>
-                                <div class="source">New York Times</div>
-                                <div class="summary">The Trump administration is discussing imposing oversight on AI models before public release, marking a shift from its previous noninterventionist approach. The move comes as concerns grow about AI safety and regulation.</div>
+                                <h3><a href="https://techcrunch.com/2026/05/07/gusto-hits-1b-revenue-a-figure-that-brings-it-closer-to-public-markets/" target="_blank">Gusto Reaches $1B Revenue Milestone Ahead of Potential IPO</a></h3>
+                                <div class="source">TechCrunch</div>
+                                <div class="summary">The payroll and HR platform hit the billion-dollar revenue mark, bringing it closer to public markets. The milestone represents actual revenue rather than annualized recurring revenue estimates.</div>
                             </div>
-                            
-                                <img class="article-thumb" src="https://static01.nyt.com/images/2026/05/04/multimedia/00biz-trump-ai-jtvh/00biz-trump-ai-jtvh-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
-                            
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://www.nytimes.com/2026/05/05/technology/apple-intelligence-lawsuit-settlement.html" target="_blank">Apple Settles AI Marketing Lawsuit for $250 Million</a></h3>
-                                <div class="source">New York Times</div>
-                                <div class="summary">iPhone owners will receive $25 to $95 over claims Apple oversold its Apple Intelligence system's capabilities. The settlement addresses allegations that the tech giant misled consumers about its AI features.</div>
-                            </div>
-                            
-                                <img class="article-thumb" src="https://static01.nyt.com/images/2026/05/05/multimedia/00biz-apple-settlement-HFO-mqjb/00biz-apple-settlement-HFO-mqjb-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
                             
                         </div>
                     
                 
                     
                         
-                        <div class="theme-label">Tech</div>
+                        <div class="theme-label">tech</div>
                     
 
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank">Severe Linux Vulnerability Catches Security Community Off-Guard</a></h3>
-                                <div class="source">Ars Technica</div>
-                                <div class="summary">A critical threat dubbed 'CopyFail' threatens multi-tenant servers, CI/CD workflows, and Kubernetes containers. Ubuntu infrastructure has been down for more than a day, hampering communication about the vulnerability that grants root access.</div>
-                            </div>
-                            
-                                <img class="article-thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2023/09/code-vulnerability-security-500x500.jpg" alt="" onerror="this.style.display='none'">
-                            
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://techcrunch.com/2026/05/06/doj-says-ransomware-gang-tapped-into-russian-government-databases/" target="_blank">Ransomware Gang Breaches Russian Government Databases, DOJ Says</a></h3>
-                                <div class="source">TechCrunch</div>
-                                <div class="summary">US prosecutors allege a ransomware organization infiltrated Russian government systems and fueled corruption. The gang's leaders allegedly avoided taxes and military service through their criminal activities.</div>
-                            </div>
-                            
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://techcrunch.com/2026/05/06/ai-evaluation-startup-braintrust-confirms-breach-tells-every-customer-to-rotate-sensitive-keys/" target="_blank">AI Startup Braintrust Suffers Data Breach, Urges Key Rotation</a></h3>
-                                <div class="source">TechCrunch</div>
-                                <div class="summary">The AI evaluation platform confirmed hackers breached its Amazon cloud environment and is asking all customers to rotate API keys. Braintrust provides an 'operating system for engineers building AI software.'</div>
+                                <h3><a href="https://www.openwall.com/lists/oss-security/2026/05/07/8" target="_blank">Critical Linux Vulnerability 'Dirtyfrag' Threatens Multi-Tenant Systems</a></h3>
+                                <div class="source">Hacker News: Front Page</div>
+                                <div class="summary">A new universal Linux privilege escalation vulnerability has emerged, potentially affecting servers, CI/CD workflows, and Kubernetes containers. The security community is scrambling to address what's being called one of the most severe Linux threats in years.</div>
                             </div>
                             
                         </div>
@@ -968,151 +1048,75 @@
         <section class="section">
             <h2 class="section-header">
                 <span class="section-icon">&#128176;</span> Funding Rounds
-                <span class="section-sub">AI &middot; Crypto &middot; Fintech</span>
+                <span class="section-sub">Curated for Founders &middot; Early Stage First</span>
             </h2>
             
-                <table class="funding-table">
-                    <thead>
-                        <tr>
-                            <th>Company</th>
-                            <th>Round</th>
-                            <th>Amount</th>
-                            <th>Lead Investor</th>
-                            <th>Sector</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                
+
+                
+                    <div class="funding-subhead">Early Stage</div>
+                    <div class="early-grid">
                         
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://techcrunch.com/2026/04/29/sources-anthropic-could-raise-a-new-50b-round-at-a-valuation-of-900b" target="_blank">Anthropic</a></div>
-                                <div class="company-summary">AI company developing Claude chatbot that could raise a new round at valuations in the $850-900 billion range.</div>
-                            </td>
-                            <td>Undisclosed</td>
-                            <td><span class="funding-amount">$50B</span></td>
-                            <td>Undisclosed</td>
-                            <td>
-                                
-                                
-                                
-                                <span class="sector-pill sector-ai">AI</span>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://techcrunch.com/2026/05/01/musely-secures-360m-from-general-catalyst-without-giving-up-equity" target="_blank">Musely</a></div>
-                                <div class="company-summary">DTC skin, hair, and menopause care brand that secured non-dilutive capital to super-charge customer acquisition.</div>
-                            </td>
-                            <td>Non-dilutive</td>
-                            <td><span class="funding-amount">$360M</span></td>
-                            <td>General Catalyst</td>
-                            <td>
-                                
-                                
-                                
+                        <div class="early-card">
+                            <div class="row1">
+                                <div class="company"><a href="https://news.crunchbase.com/fintech/fazeshift-accounts-receivable-ai-finance-ops-startup-funding/" target="_blank">Fazeshift</a></div>
+                                <div class="stage-amount"><span class="stage">Series A</span>$17M</div>
+                            </div>
+                            <div class="row2">
                                 <span class="sector-pill sector-fintech">Fintech</span>
-                            </td>
-                        </tr>
+                                <span class="lead">led by Undisclosed</span>
+                            </div>
+                            <div class="blurb">A startup that uses AI agents to automate accounts receivable.</div>
+                        </div>
                         
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://news.crunchbase.com/ai/blitzy-funding-valuation-autonomous-software-development-vibe-coding-startups/" target="_blank">Blitzy</a></div>
-                                <div class="company-summary">Autonomous software development startup that helps streamline coding for large enterprises with AI.</div>
-                            </td>
-                            <td>Series B</td>
-                            <td><span class="funding-amount">$200M</span></td>
-                            <td>Northzone</td>
-                            <td>
-                                
-                                
-                                
+                    </div>
+                
+
+                
+                    <div class="funding-subhead signal">Later-Stage Signal</div>
+                    <div class="signal-list">
+                        
+                        <div class="signal-item">
+                            <div class="head">
+                                <a href="https://news.crunchbase.com/ai/blitzy-funding-valuation-autonomous-software-development-vibe-coding-startups/" target="_blank">Blitzy</a>
                                 <span class="sector-pill sector-ai">AI</span>
-                            </td>
-                        </tr>
+                            </div>
+                            <div class="meta">
+                                Series B &middot; $200M @ $1.4B val &middot; led by Northzone
+                            </div>
+                            
+                                <div class="reason"><b>Why it matters</b>AI coding automation is becoming a critical enterprise need as companies race to leverage autonomous development.</div>
+                            
+                        </div>
                         
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://techcrunch.com/2026/05/06/insurance-startup-corgi-hits-1-3b-valuation-4-months-after-its-series-a/" target="_blank">Corgi</a></div>
-                                <div class="company-summary">Insurance startup that hit a $1.3 billion valuation just 4 months after its Series A round.</div>
-                            </td>
-                            <td>Series B</td>
-                            <td><span class="funding-amount">$160M</span></td>
-                            <td>TCV</td>
-                            <td>
-                                
-                                
-                                
+                        <div class="signal-item">
+                            <div class="head">
+                                <a href="https://techcrunch.com/2026/05/06/insurance-startup-corgi-hits-1-3b-valuation-4-months-after-its-series-a/" target="_blank">Corgi</a>
+                                <span class="sector-pill sector-other">Other</span>
+                            </div>
+                            <div class="meta">
+                                Series B &middot; $160M @ $1.3B val &middot; led by TCV
+                            </div>
+                            
+                                <div class="reason"><b>Why it matters</b>The rapid valuation jump from Series A to $1.3B in just 4 months signals massive momentum in insurtech.</div>
+                            
+                        </div>
+                        
+                        <div class="signal-item">
+                            <div class="head">
+                                <a href="https://techcrunch.com/2026/05/07/kalshi-doubles-valuation-in-5-months-hitting-22-billion/" target="_blank">Kalshi</a>
                                 <span class="sector-pill sector-fintech">Fintech</span>
-                            </td>
-                        </tr>
+                            </div>
+                            <div class="meta">
+                                Series F &middot; $1B @ $22B val &middot; led by Coatue
+                            </div>
+                            
+                                <div class="reason"><b>Why it matters</b>Doubling valuation to $22B in 5 months shows prediction markets are exploding as mainstream financial products.</div>
+                            
+                        </div>
                         
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://news.crunchbase.com/venture/ai-powered-legal-tech-startup-legora-seriesd-extension-nvidia/" target="_blank">Legora</a></div>
-                                <div class="company-summary">AI-powered legal tech platform built for lawyers that raised an extension bringing total Series D to $600M.</div>
-                            </td>
-                            <td>Series D Extension</td>
-                            <td><span class="funding-amount">$50M</span></td>
-                            <td>NVentures (Nvidia)</td>
-                            <td>
-                                
-                                
-                                
-                                <span class="sector-pill sector-ai">AI</span>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://news.crunchbase.com/venture/supabase-startup-investment-dreambase-ai-felicis/" target="_blank">Dreambase</a></div>
-                                <div class="company-summary">AI-powered analytics platform that helps people build data-driven companies without hiring a data team.</div>
-                            </td>
-                            <td>Seed</td>
-                            <td><span class="funding-amount">$3.7M</span></td>
-                            <td>Felicis</td>
-                            <td>
-                                
-                                
-                                
-                                <span class="sector-pill sector-ai">AI</span>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://techcrunch.com/2026/05/05/as-crypto-cools-a16zcrypto-raises-a-2-2b-fund/" target="_blank">a16z crypto</a></div>
-                                <div class="company-summary">Andreessen Horowitz's crypto fund that will continue backing crypto and blockchain startups while other VCs pivot to AI.</div>
-                            </td>
-                            <td>Fund</td>
-                            <td><span class="funding-amount">$2.2B</span></td>
-                            <td>Undisclosed</td>
-                            <td>
-                                
-                                
-                                
-                                <span class="sector-pill sector-crypto">Crypto/Web3</span>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <div class="company-name"><a href="https://techcrunch.com/2026/05/04/katie-haun-raises-1-billion-for-new-venture-funds/" target="_blank">Katie Haun Fund</a></div>
-                                <div class="company-summary">Venture fund focused on backing crypto and blockchain startups across new funds announced by Katie Haun.</div>
-                            </td>
-                            <td>Fund</td>
-                            <td><span class="funding-amount">$1B</span></td>
-                            <td>Undisclosed</td>
-                            <td>
-                                
-                                
-                                
-                                <span class="sector-pill sector-crypto">Crypto/Web3</span>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+                    </div>
+                
             
         </section>
 
@@ -1129,14 +1133,14 @@
                         <div class="yc-number">1</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies/fenrock-ai-yc-w26" target="_blank">Fenrock AI</a>
+                                <a href="https://www.ycombinator.com/companies/matforge" target="_blank">Matforge</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-ai">AI/Fintech</span>
+                                <span class="sector-pill sector-ai">AI</span>
                             </h3>
-                            <div class="yc-desc"><cite index="28-1,28-4">AI agents for financial crime compliance that process 10X workload per analyst with bullet-proof audit logs</cite></div>
+                            <div class="yc-desc">AI scientists that discover new materials for the semiconductor industry using a swarm of AI agents.</div>
                         </div>
                     </div>
                     
@@ -1144,14 +1148,14 @@
                         <div class="yc-number">2</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies?batch=Winter+2026" target="_blank">Sequence Markets</a>
+                                <a href="https://www.ycombinator.com/companies/sponge-wallet" target="_blank">Sponge Wallet</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-crypto">Crypto/Web3</span>
+                                <span class="sector-pill sector-crypto">Fintech/Crypto</span>
                             </h3>
-                            <div class="yc-desc"><cite index="11-27,12-3">Execution technology and ultra low latency trading systems tailored for cryptocurrency markets and tokenized assets</cite></div>
+                            <div class="yc-desc">Financial infrastructure startup building financial rails for the AI agent economy.</div>
                         </div>
                     </div>
                     
@@ -1159,14 +1163,14 @@
                         <div class="yc-number">3</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies?batch=Winter+2026" target="_blank">Chamber</a>
+                                <a href="https://www.ycombinator.com/companies/sequence-markets" target="_blank">Sequence Markets</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-ai">AI/Developer Tools</span>
+                                <span class="sector-pill sector-crypto">Crypto</span>
                             </h3>
-                            <div class="yc-desc"><cite index="11-3,14-18,14-19">GPU infrastructure optimization platform that automates management and optimization of compute resources powering AI workloads</cite></div>
+                            <div class="yc-desc">Unified trading platform for crypto, real-world assets, and prediction markets with low-latency execution.</div>
                         </div>
                     </div>
                     
@@ -1174,14 +1178,14 @@
                         <div class="yc-number">4</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies?batch=Winter+2026" target="_blank">Grade</a>
+                                <a href="https://www.ycombinator.com/companies/unifold" target="_blank">Unifold</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-fintech">Fintech</span>
+                                <span class="sector-pill sector-crypto">Crypto</span>
                             </h3>
-                            <div class="yc-desc"><cite index="11-19,12-3">API for performance-based payroll that ties compensation directly to measurable outcomes</cite></div>
+                            <div class="yc-desc">Crypto onramp services provider simplifying the conversion from traditional currency to cryptocurrency.</div>
                         </div>
                     </div>
                     
@@ -1189,14 +1193,14 @@
                         <div class="yc-number">5</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies?batch=Winter+2026" target="_blank">Unifold</a>
+                                <a href="https://www.ycombinator.com/companies/gigacatalyst" target="_blank">Gigacatalyst</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-crypto">Crypto/Web3</span>
+                                <span class="sector-pill sector-dev-tools">Developer Tools</span>
                             </h3>
-                            <div class="yc-desc"><cite index="2-24">Multi-chain deposit and payment infrastructure enabling instant crypto and stablecoin deposits across various blockchains</cite></div>
+                            <div class="yc-desc">AI customization layer that embeds in SaaS products, enabling customers to build their own apps with 90% repeat usage.</div>
                         </div>
                     </div>
                     
@@ -1204,14 +1208,14 @@
                         <div class="yc-number">6</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies?batch=Winter+2026" target="_blank">Bubble Lab</a>
+                                <a href="https://www.ycombinator.com/companies/maven" target="_blank">Maven</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-ai">AI/Developer Tools</span>
+                                <span class="sector-pill sector-fintech">Fintech</span>
                             </h3>
-                            <div class="yc-desc"><cite index="2-23,11-33">AI-native enterprise software development platform enabling users to create workflows using natural language commands</cite></div>
+                            <div class="yc-desc">Payments infrastructure specifically designed for voice agents and AI-driven commerce.</div>
                         </div>
                     </div>
                     
@@ -1219,14 +1223,14 @@
                         <div class="yc-number">7</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies?batch=Winter+2026" target="_blank">Maven</a>
+                                <a href="https://www.ycombinator.com/companies/playabl-ai" target="_blank">Playabl.ai</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-ai">Fintech/AI</span>
+                                <span class="sector-pill sector-ai">AI</span>
                             </h3>
-                            <div class="yc-desc"><cite index="12-2">Payments infrastructure for voice agents, building financial rails for the agent economy</cite></div>
+                            <div class="yc-desc">AI game builder that lets anyone create games and interactive experiences by chatting with AI.</div>
                         </div>
                     </div>
                     
@@ -1234,14 +1238,14 @@
                         <div class="yc-number">8</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://www.ycombinator.com/companies/hex-security" target="_blank">Hex Security</a>
+                                <a href="https://www.ycombinator.com/companies/grade" target="_blank">Grade</a>
                                 <span class="yc-batch-tag">W26</span>
                                 
                                 
                                 
-                                <span class="sector-pill sector-ai">AI/Developer Tools</span>
+                                <span class="sector-pill sector-fintech">Fintech</span>
                             </h3>
-                            <div class="yc-desc"><cite index="24-5,24-6">Autonomous AI agents that find and verify real security vulnerabilities with ~$1M ARR in a few weeks</cite></div>
+                            <div class="yc-desc">API platform for performance-based payroll systems automating compensation workflows for businesses.</div>
                         </div>
                     </div>
                     
@@ -1267,30 +1271,44 @@
                         </div>
                     
                     <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/pronto-closes-series-b-round-at-45-mn-valuation-jumps-to-200-mn/" target="_blank">Pronto Closes Series B Round At $45 Mn, Valuation Jumps To $200 Mn</a></h3>
+                        <h3><a href="https://inc42.com/buzz/skyroot-bags-60-mn-to-become-indias-first-spacetech-unicorn/" target="_blank">Skyroot Bags $60 Mn To Become India's First Spacetech Unicorn</a></h3>
                         <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Quick services platform Pronto has closed its Series B funding round at $45 Mn. The latest funding round has doubled the company's valuation to $200 million.</div>
+                        <div class="india-summary">Spacetech startup Skyroot Aerospace has raised $60 million (around ₹570 crore) in a funding round, becoming India's first spacetech unicorn. The company plans to use the capital to support commercial launch operations of its Vikram-1 rocket.</div>
                     </div>
                 
                     
                     <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/exclusive-robotics-startup-general-autonomy-raises-%e2%82%b932-cr-at-%e2%82%b9280-cr-valuation/" target="_blank">Robotics Startup General Autonomy Raises ₹32 Cr At ₹280 Cr Valuation</a></h3>
+                        <h3><a href="https://inc42.com/buzz/emami-to-acquire-60-stake-in-vedix-skinkraft-parent-for-%e2%82%b9321-cr/" target="_blank">Emami To Acquire 60% Stake In Vedix & SkinKraft Parent For ₹321 Cr</a></h3>
                         <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Robotics startup General Autonomy has raised about ₹32 Cr (around $3.3 Mn) in its seed round led by existing investors. The funding values the company at ₹280 Cr valuation.</div>
+                        <div class="india-summary">FMCG major Emami is acquiring a 60% stake in IncNut Digital, the parent entity of D2C beauty brands Vedix and SkinKraft. The acquisition is valued at ₹321 crore as part of Emami's expansion into the digital beauty space.</div>
                     </div>
                 
                     
                     <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/bigendian-raises-6-mn-to-commercialise-first-soc/" target="_blank">BigEndian Raises $6 Mn To Commercialise First SoC</a></h3>
+                        <h3><a href="https://inc42.com/buzz/digital-banking-startup-freo-acquires-credit-marketplace-indialends/" target="_blank">Digital Banking Startup Freo Acquires Credit Marketplace IndiaLends</a></h3>
                         <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Fabless semiconductor startup BigEndian Semiconductors has raised $6 Mn (around ₹57 Cr). The funds will be used to commercialise its first SoC, expand product engineering and deepen partnerships with foundries and OEMs.</div>
+                        <div class="india-summary">Digital banking startup Freo has acquired a 100% stake in credit marketplace IndiaLends to expand its reach. IndiaLends will continue to operate as a separate entity, serving over 50 million users combined.</div>
                     </div>
                 
                     
                     <div class="india-item">
-                        <h3><a href="https://yourstory.com/2026/05/ecofy-raises-15-million-from-mirova-to-expand-green-financing-portfolio" target="_blank">Ecofy raises $15M from Mirova to expand green financing portfolio</a></h3>
+                        <h3><a href="https://inc42.com/buzz/inmobi-acquires-san-francisco-based-app-analytics-platform-mobileaction/" target="_blank">InMobi Acquires San Francisco-Based App Analytics Platform MobileAction</a></h3>
+                        <div class="india-source">Inc42 Media</div>
+                        <div class="india-summary">Adtech unicorn InMobi has acquired San Francisco-based mobile app marketing and analytics platform MobileAction. The acquisition strengthens InMobi's position in the mobile app analytics and marketing space.</div>
+                    </div>
+                
+                    
+                    <div class="india-item">
+                        <h3><a href="https://inc42.com/buzz/exclusive-robotics-startup-alphadroid-raises-3-8-mn-from-alkemi-others/" target="_blank">Exclusive: Robotics Startup Alphadroid Raises $3.8 Mn From Alkemi, Others</a></h3>
+                        <div class="india-source">Inc42 Media</div>
+                        <div class="india-summary">Robotics startup Alphadroid has raised ₹36 crore (around $3.8 million) in a funding round led by Alkemi and other investors. The startup is working on advanced robotics solutions for industrial applications.</div>
+                    </div>
+                
+                    
+                    <div class="india-item">
+                        <h3><a href="https://yourstory.com/2026/05/bigendian-semiconductors-bags-6-million-led-by-ian-alpha-fund" target="_blank">BigEndian Semiconductors bags $6M led by IAN Alpha Fund</a></h3>
                         <div class="india-source">YourStory RSS Feed</div>
-                        <div class="india-summary">Mirova, an affiliate of Natixis Investment Managers, is backing the three-year-old startup as part of its broader strategy to finance energy transition projects in emerging markets. The investment marks Mirova's fourth deal in India under this mandate.</div>
+                        <div class="india-summary">Semiconductor startup BigEndian has raised $6 million in funding led by IAN Alpha Fund. The funds will be used to commercialize its first SoC, expand product engineering and deepen partnerships with foundries and OEMs.</div>
                     </div>
                 
                     
@@ -1300,9 +1318,9 @@
                         </div>
                     
                     <div class="india-item">
-                        <h3><a href="https://www.livemint.com/technology/pixxel-sarvam-to-build-india-s-first-orbital-data-centre-satellite-amid-space-computing-push-11778046621428.html" target="_blank">Pixxel, Sarvam to build India's first orbital data centre satellite</a></h3>
-                        <div class="india-source">mint - technology</div>
-                        <div class="india-summary">India is taking early steps toward space-based computing as Pixxel and Sarvam partner to build an orbital data centre satellite. The move comes amid rising global interest and energy constraints in traditional data centers.</div>
+                        <h3><a href="https://inc42.com/buzz/paytm-bets-on-ai-makeover-to-drive-fy27-momentum/" target="_blank">Paytm Bets On AI Makeover To Drive FY27 Momentum</a></h3>
+                        <div class="india-source">Inc42 Media</div>
+                        <div class="india-summary">After its first full year of profitability in FY26, Paytm is now turning its attention to AI transformation for future growth. The fintech major is implementing AI-driven solutions to strengthen its business operations and drive momentum for FY27.</div>
                     </div>
                 
                     
@@ -1313,23 +1331,9 @@
                         </div>
                     
                     <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/sebi-forms-cybersecurity-task-force-amid-mythos-concerns/" target="_blank">SEBI Forms Cybersecurity Task Force Amid Mythos Concerns</a></h3>
-                        <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Markets regulator Securities and Exchange Board of India has formed a cybersecurity task force amid growing concerns over Anthropic's Mythos. The task force will address emerging cybersecurity challenges in the financial sector.</div>
-                    </div>
-                
-                    
-                    <div class="india-item">
                         <h3><a href="https://yourstory.com/2026/05/cabinet-approves-eclgs-5-msme-credit-boost" target="_blank">Cabinet Approves ECLGS 5.0 for MSME Credit Boost</a></h3>
                         <div class="india-source">YourStory RSS Feed</div>
-                        <div class="india-summary">The Union Cabinet has approved ECLGS 5.0 to unlock Rs 2.55 lakh crore in credit support for MSMEs and airlines amid global disruptions. This will provide significant financial support to small businesses.</div>
-                    </div>
-                
-                    
-                    <div class="india-item">
-                        <h3><a href="https://yourstory.com/2026/05/even-healthcare-secures-irdai-nod-enter-retail-insurance-market-enable-policy-portability" target="_blank">Even Healthcare secures IRDAI nod to enter retail insurance market</a></h3>
-                        <div class="india-source">YourStory RSS Feed</div>
-                        <div class="india-summary">IRDAI approval lets Even Healthcare enter retail insurance, offering direct-to-consumer plans with portability. The company can now embed its full-stack care model beyond group coverage.</div>
+                        <div class="india-summary">The Union Cabinet has approved ECLGS 5.0 to unlock Rs 2.55 lakh crore in credit support for MSMEs and airlines amid global disruptions. This policy initiative aims to provide crucial financial support to small businesses.</div>
                     </div>
                 
             
@@ -1342,37 +1346,37 @@
                 <span class="section-sub">X / Twitter</span>
             </h2>
             
-                <div class="twitter-opening">The timeline reflects a day dominated by geopolitical tensions, health crises, and major corporate developments. Iran war concerns are driving up energy costs and sparking diplomatic discussions, while a hantavirus outbreak on a cruise ship has health authorities scrambling. Meanwhile, the tech and entertainment sectors are seeing significant moves, with major AI partnerships, legal battles, and earnings reports shaping market sentiment.</div>
+                <div class="twitter-opening">The timeline reflects a complex global landscape marked by humanitarian crises, geopolitical tensions, and technological advancement. From Somalia's severe hunger crisis and Middle East conflicts to tech innovations and market volatility, the past 24 hours showcase both urgent international challenges and signs of progress in AI development and diplomatic engagement.</div>
                 <div class="discussions-grid">
                     
                         <div class="discussion">
-                            <div class="topic">Iran War Economic Impact</div>
-                            <div class="author">@WSJ</div>
-                            <div class="disc-summary">Airlines are warning the Trump administration about rising jet fuel prices due to the Iran conflict, with costs jumping $1.8 billion or 56% in March. The industry is urging for swift resolution to prevent further economic damage.</div>
-                        </div>
-                    
-                        <div class="discussion">
-                            <div class="topic">Hantavirus Cruise Ship Crisis</div>
-                            <div class="author">@Reuters/WSJ</div>
-                            <div class="disc-summary">A deadly hantavirus outbreak on the MV Hondius cruise ship has killed three people, with health authorities mobilizing containment efforts and evacuating passengers to various countries including the Netherlands and Germany.</div>
-                        </div>
-                    
-                        <div class="discussion">
-                            <div class="topic">AI Sector Developments</div>
+                            <div class="topic">Somalia Hunger Crisis</div>
                             <div class="author">@Reuters</div>
-                            <div class="disc-summary">Major AI partnerships are forming, with Anthropic striking a deal with SpaceX for data center access and DeepSeek potentially valued at $50 billion in its first fundraising round, highlighting the sector's explosive growth.</div>
+                            <div class="disc-summary">Somalia faces one of its most severe hunger crises in years, driven by drought, declining aid funding, and rising global prices linked to Middle East conflict.</div>
                         </div>
                     
                         <div class="discussion">
-                            <div class="topic">Disney Earnings Success</div>
-                            <div class="author">@Reuters/Jim Cramer</div>
-                            <div class="disc-summary">Disney beat earnings estimates with new CEO Josh D'Amaro outlining a growth strategy focused on streaming expansion and theme park investments, sending the stock surging and drawing positive analyst attention.</div>
+                            <div class="topic">OpenAI Codex Chrome Extension</div>
+                            <div class="author">@OpenAI</div>
+                            <div class="disc-summary">OpenAI launched a major Chrome extension for Codex that can navigate browsers, handle repetitive tasks, and work across multiple tabs to assist with coding and work flows.</div>
                         </div>
                     
                         <div class="discussion">
-                            <div class="topic">US-China Relations</div>
-                            <div class="author">@WSJ</div>
-                            <div class="disc-summary">The U.S. and China are considering AI talks to manage risks as competition intensifies, while Chinese exporters appear 'numb' to Trump's trade threats ahead of his potential visit.</div>
+                            <div class="topic">Trump-Lula Diplomatic Meeting</div>
+                            <div class="author">@Reuters</div>
+                            <div class="disc-summary">Brazilian President Lula met with Trump at the White House, expressing satisfaction with talks and stating he doesn't believe Trump will influence Brazil's elections.</div>
+                        </div>
+                    
+                        <div class="discussion">
+                            <div class="topic">Market Tech Stock Retreat</div>
+                            <div class="author">@Reuters</div>
+                            <div class="disc-summary">US stocks ended lower with Intel and chip stocks retreating after recent rallies, while uncertainty around US-Iran peace talks weighed on markets.</div>
+                        </div>
+                    
+                        <div class="discussion">
+                            <div class="topic">AI Development Philosophy</div>
+                            <div class="author">@Sam Altman</div>
+                            <div class="disc-summary">OpenAI's CEO emphasized it's 'way cooler to help software developers pokemon-evolve into superheroes than to try to replace them,' highlighting AI as enhancement rather than replacement.</div>
                         </div>
                     
                 </div>
@@ -1380,15 +1384,17 @@
                     <div class="breaking-news">
                         <strong>Breaking &mdash;</strong>
                         
-                            Trump announces 'very good talks' with Iran in the last 24 hours amid ongoing conflict; 
+                            Mexican fairground fire kills five people; 
                         
-                            FBI searches Virginia lawmaker's office connected to congressional redistricting efforts; 
+                            Solomon Islands PM ousted after losing confidence vote; 
                         
-                            Global debt reaches record high of nearly $353 trillion with signs of movement away from US dollar; 
+                            South Sudan's President Kiir sacks army chief and finance minister; 
                         
-                            US Supreme Court declines to pause order holding Apple in contempt in Epic Games lawsuit; 
+                            Tennessee Republicans approve new congressional map dismantling majority-Black district; 
                         
-                            S&P 500 and Nasdaq surge to record-high closes driven by strong AMD earnings and AI stock rally
+                            French prosecutors summon Elon Musk on preliminary criminal charges over X investigation; 
+                        
+                            Baltic nations seek more NATO defense as drone hits Latvian oil tanks
                         
                     </div>
                 
@@ -1409,9 +1415,9 @@
                             
                                 <div class="product-icon">G</div>
                                 <div class="product-content">
-                                    <h3><a href="https://www.producthunt.com/products/gyro-autopilot" target="_blank">Gyro Autopilot</a></h3>
-                                    <div class="tagline">100s of Dollars Could Be Sitting in Your Inbox 📥</div>
-                                    <div class="description">Gyro Autopilot automatically scans your email inbox to identify unclaimed money, refunds, and financial opportunities you may have missed. This AI-powered tool transforms your cluttered inbox into a potential treasure trove of forgotten cash rewards and reimbursements.</div>
+                                    <h3><a href="https://www.producthunt.com/products/getthis" target="_blank">GetThis</a></h3>
+                                    <div class="tagline">Turn voice, text, or screenshots into tasks.</div>
+                                    <div class="description">GetThis transforms the chaotic way we capture ideas by converting any input method - whether you're dictating notes, typing thoughts, or snapping screenshots - directly into actionable tasks. This cross-platform productivity tool eliminates the friction between inspiration and organization, making it effortless to turn fleeting moments of clarity into structured to-do items.</div>
                                 </div>
                             
                         </div>
@@ -1419,40 +1425,40 @@
                         <div class="product">
                             <span class="product-number">2</span>
                             
-                                <div class="product-icon">R</div>
-                                <h3><a href="https://www.producthunt.com/products/inworld-ai" target="_blank">Realtime TTS-2</a></h3>
-                                <div class="tagline">Voice AI that feels as good as it sounds</div>
-                                <div class="description">Realtime TTS-2 delivers ultra-low latency text-to-speech conversion that sounds remarkably natural and human-like. The technology bridges the gap between robotic voice synthesis and authentic human conversation, making AI interactions feel genuinely engaging.</div>
+                                <div class="product-icon">A</div>
+                                <h3><a href="https://www.producthunt.com/products/aiso" target="_blank">Aiso</a></h3>
+                                <div class="tagline">Rank your brand in ChatGPT, Gemini, and AI answers</div>
+                                <div class="description">Aiso addresses a critical blind spot in modern marketing by tracking how your brand appears in AI-generated responses across major platforms like ChatGPT and Google's Gemini. As consumers increasingly rely on AI assistants for recommendations and research, this tool helps businesses understand and optimize their visibility in the new era of AI-driven search and discovery.</div>
                             
                         </div>
                     
                         <div class="product">
                             <span class="product-number">3</span>
                             
-                                <div class="product-icon">B</div>
-                                <h3><a href="https://www.producthunt.com/products/blaze-your-new-calendar" target="_blank">Blaze</a></h3>
-                                <div class="tagline">The AI-powered calendar that plans your day for you</div>
-                                <div class="description">Blaze uses artificial intelligence to automatically organize and optimize your daily schedule based on your priorities, habits, and preferences. Instead of manually juggling appointments and tasks, this smart calendar proactively arranges your day for maximum productivity and work-life balance.</div>
+                                <div class="product-icon">L</div>
+                                <h3><a href="https://www.producthunt.com/products/lingodotdev" target="_blank">Lingo.dev v1</a></h3>
+                                <div class="tagline">Localization engineering platform for consistent translation</div>
+                                <div class="description">Lingo.dev tackles the notorious challenge of maintaining translation consistency across global software products by providing developers with an engineering-first localization platform. The tool bridges the gap between technical teams and translators, ensuring that your app's voice remains coherent whether it's speaking to users in Tokyo, Berlin, or São Paulo.</div>
                             
                         </div>
                     
                         <div class="product">
                             <span class="product-number">4</span>
                             
-                                <div class="product-icon">P</div>
-                                <h3><a href="https://www.producthunt.com/products/solanafndn" target="_blank">pay.sh</a></h3>
-                                <div class="tagline">Discover, access, and pay for any API autonomously</div>
-                                <div class="description">Pay.sh revolutionizes API integration by automatically discovering, accessing, and handling payments for any API service without manual setup. Developers can now seamlessly connect to thousands of APIs through a single interface that manages authentication, billing, and usage autonomously.</div>
+                                <div class="product-icon">C</div>
+                                <h3><a href="https://www.producthunt.com/products/moderation-malware-virus-scanner" target="_blank">Contextual Moderation for Chat</a></h3>
+                                <div class="tagline">AI-powered moderation for safer chat experiences</div>
+                                <div class="description">This AI moderation system goes beyond simple keyword filtering to understand context and nuance in chat conversations, promising more sophisticated community management. With online toxicity becoming increasingly subtle and context-dependent, this tool represents a much-needed evolution in automated content moderation that could finally make digital spaces genuinely safer.</div>
                             
                         </div>
                     
                         <div class="product">
                             <span class="product-number">5</span>
                             
-                                <div class="product-icon">D</div>
-                                <h3><a href="https://www.producthunt.com/products/rewards-for-the-99" target="_blank">Debbie Rewards</a></h3>
-                                <div class="tagline">Cash rewards app for saving and paying off debt</div>
-                                <div class="description">Debbie Rewards gamifies financial responsibility by offering cash incentives for saving money and making debt payments. This innovative app turns the often-dreaded process of debt repayment into a rewarding experience that motivates users to build healthier financial habits.</div>
+                                <div class="product-icon">R</div>
+                                <h3><a href="https://www.producthunt.com/products/rakor" target="_blank">RAKOR</a></h3>
+                                <div class="tagline">Custom CRM and AI automation for businesses</div>
+                                <div class="description">RAKOR combines customer relationship management with intelligent automation, allowing businesses to create custom workflows that adapt to their specific needs rather than forcing them into rigid templates. The platform's AI-driven approach promises to eliminate repetitive tasks while maintaining the personal touch that makes customer relationships thrive, potentially revolutionizing how small and medium businesses manage their client interactions.</div>
                             
                         </div>
                     
@@ -1473,13 +1479,13 @@
                             <div class="paper-number">1</div>
                             <div class="paper-content">
                                 
-                                <span class="paper-category cat-llm">LLM</span>
-                                <h3><a href="https://huggingface.co/papers/2604.25907" target="_blank">How Fast Should a Model Commit to Supervision? Training Reasoning Models on the Tsallis Loss Continuum</a></h3>
+                                <span class="paper-category cat-multimodal">Multimodal</span>
+                                <h3><a href="https://huggingface.co/papers/2604.27393" target="_blank">MiniCPM-o 4.5: Towards Real-Time Full-Duplex Omni-Modal Interaction</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Google</span>
-                                     &middot; Chu-Cheng Lin, Eugene Ie
+                                    <span class="paper-lab">OpenBMB</span>
+                                     &middot; Junbo Cui, Bokai Xu, Chongyi Wang
                                 </div>
-                                <div class="paper-why">Introduces a novel loss family based on Tsallis q-logarithm that interpolates between RL approaches to improve reasoning model training when initial success probability is low.</div>
+                                <div class="paper-why">Represents a major breakthrough in real-time multimodal AI interaction, moving beyond static processing to human-level streaming communication.</div>
                             </div>
                         </div>
                     
@@ -1487,13 +1493,13 @@
                             <div class="paper-number">2</div>
                             <div class="paper-content">
                                 
-                                <span class="paper-category cat-llm">LLM</span>
-                                <h3><a href="https://huggingface.co/papers/2605.02913" target="_blank">Generate, Filter, Control, Replay: A Comprehensive Survey of Rollout Strategies for LLM Reinforcement Learning</a></h3>
+                                <span class="paper-category cat-ml-theory">ML Theory</span>
+                                <h3><a href="https://huggingface.co/papers/2605.04916" target="_blank">A Foundation Model for Zero-Shot Logical Rule Induction</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Other</span>
-                                     &middot; Rohan Surana, Gagan Mundada, Xunyi Jiang
+                                    <span class="paper-lab">Unknown</span>
+                                     &middot; Yin Jun Phua
                                 </div>
-                                <div class="paper-why">Provides a comprehensive survey of rollout strategies for LLM reinforcement learning, crucial for understanding post-training optimization methods.</div>
+                                <div class="paper-why">Introduces Neural Rule Inducer (NRI), the first pretrained model for zero-shot logical rule induction, solving a key limitation in interpretable AI.</div>
                             </div>
                         </div>
                     
@@ -1501,13 +1507,13 @@
                             <div class="paper-number">3</div>
                             <div class="paper-content">
                                 
-                                <span class="paper-category cat-vision">Vision</span>
-                                <h3><a href="https://huggingface.co/papers/2605.02134" target="_blank">Video Generation with Predictive Latents</a></h3>
+                                <span class="paper-category cat-robotics">Robotics</span>
+                                <h3><a href="https://huggingface.co/papers/2604.25788" target="_blank">KinDER: A Physical Reasoning Benchmark for Robot Learning and Planning</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Other</span>
-                                     &middot; Yian Zhao, Feng Wang, Qiushan Guo
+                                    <span class="paper-lab">Unknown</span>
+                                     &middot; Yixuan Huang, Bowen Li, Vaibhav Saxena
                                 </div>
-                                <div class="paper-why">Advances video VAE technology for latent video generative modeling by improving training efficiency and stability through predictive latents.</div>
+                                <div class="paper-why">Addresses critical physical reasoning challenges in robotics through a comprehensive benchmark targeting kinematic and dynamic constraints.</div>
                             </div>
                         </div>
                     
@@ -1515,13 +1521,13 @@
                             <div class="paper-number">4</div>
                             <div class="paper-content">
                                 
-                                <span class="paper-category cat-multimodal">Multimodal</span>
-                                <h3><a href="https://huggingface.co/papers/2605.00891" target="_blank">X2SAM: Any Segmentation in Images and Videos</a></h3>
+                                <span class="paper-category cat-safety">Safety</span>
+                                <h3><a href="https://huggingface.co/papers/2605.05166" target="_blank">The First Token Knows: Single-Decode Confidence for Hallucination Detection</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Other</span>
-                                     &middot; Hao Wang, Limeng Qiao, Chi Zhang
+                                    <span class="paper-lab">Unknown</span>
+                                     &middot; Mina Gabriel
                                 </div>
-                                <div class="paper-why">Extends SAM foundation model capabilities to handle any-prompt segmentation across both images and videos, advancing multimodal perception.</div>
+                                <div class="paper-why">Provides an efficient alternative to costly multi-sampling methods for hallucination detection using only the first token's confidence.</div>
                             </div>
                         </div>
                     
@@ -1529,13 +1535,13 @@
                             <div class="paper-number">5</div>
                             <div class="paper-content">
                                 
-                                <span class="paper-category cat-robotics">Robotics</span>
-                                <h3><a href="https://huggingface.co/papers/2605.01371" target="_blank">ESARBench: A Benchmark for Agentic UAV Embodied Search and Rescue</a></h3>
+                                <span class="paper-category cat-llm">LLM</span>
+                                <h3><a href="https://huggingface.co/papers/2605.03314" target="_blank">When to Think, When to Speak: Learning Disclosure Policies for LLM Reasoning</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Other</span>
-                                     &middot; Daoxuan Zhang, Ping Chen, Jianyi Zhou
+                                    <span class="paper-lab">Unknown</span>
+                                     &middot; Jiaqi Wei, Xuehang Guo, Pengfei Yu
                                 </div>
-                                <div class="paper-why">Creates the first comprehensive benchmark for UAV-based search and rescue using multimodal LLMs, addressing critical real-world applications.</div>
+                                <div class="paper-why">Tackles the fundamental problem of balancing reasoning quality with response latency in autoregressive language models through learned disclosure policies.</div>
                             </div>
                         </div>
                     
@@ -1544,12 +1550,12 @@
                             <div class="paper-content">
                                 
                                 <span class="paper-category cat-agents">Agents</span>
-                                <h3><a href="https://huggingface.co/papers/2605.03941" target="_blank">A Benchmark for Interactive World Models with a Unified Action Generation Framework</a></h3>
+                                <h3><a href="https://huggingface.co/papers/2605.05185" target="_blank">OpenSearch-VL: An Open Recipe for Frontier Multimodal Search Agents</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Other</span>
-                                     &middot; Jianjie Fang, Yingshan Lei, Qin Wan
+                                    <span class="paper-lab">Unknown</span>
+                                     &middot; Shuang Chen, Kaituo Feng, Hangting Chen
                                 </div>
-                                <div class="paper-why">Introduces large-scale benchmark for interactive world models crucial for AGI development, providing unified framework for perception, reasoning, and action.</div>
+                                <div class="paper-why">Addresses the reproducibility gap in multimodal search agents by providing an open framework for deep search capabilities.</div>
                             </div>
                         </div>
                     
@@ -1557,13 +1563,13 @@
                             <div class="paper-number">7</div>
                             <div class="paper-content">
                                 
-                                <span class="paper-category cat-multimodal">Multimodal</span>
-                                <h3><a href="https://huggingface.co/papers/2604.28123" target="_blank">Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL</a></h3>
+                                <span class="paper-category cat-agents">Agents</span>
+                                <h3><a href="https://huggingface.co/papers/2605.02910" target="_blank">CreativityBench: Evaluating Agent Creative Reasoning via Affordance-Based Tool Repurposing</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Other</span>
-                                     &middot; Sudong Wang, Weiquan Huang, Xiaomin Yu
+                                    <span class="paper-lab">Unknown</span>
+                                     &middot; Cheng Qian, Hyeonjeong Ha, Jiayu Liu
                                 </div>
-                                <div class="paper-why">Proposes novel pre-alignment method for multimodal models that preserves original capabilities while enabling better reinforcement learning outcomes.</div>
+                                <div class="paper-why">Introduces a novel benchmark for evaluating creative problem-solving capabilities in AI agents through tool repurposing scenarios.</div>
                             </div>
                         </div>
                     
@@ -1571,13 +1577,13 @@
                             <div class="paper-number">8</div>
                             <div class="paper-content">
                                 
-                                <span class="paper-category cat-multimodal">Multimodal</span>
-                                <h3><a href="https://arxiv.org/abs/2605.01278" target="_blank">Valley3: Scaling Omni Foundation Models for E-commerce</a></h3>
+                                <span class="paper-category cat-vision">Vision</span>
+                                <h3><a href="https://huggingface.co/papers/2604.24575" target="_blank">Diffusion Model as a Generalist Segmentation Learner</a></h3>
                                 <div class="paper-meta">
-                                    <span class="paper-lab">Alibaba</span>
-                                     &middot; Zeyu Chen, Guanghao Zhou, Qixiang Yin
+                                    <span class="paper-lab">Unknown</span>
+                                     &middot; Haoxiao Wang, Antao Xiang, Haiyang Sun
                                 </div>
-                                <div class="paper-why">Introduces a large-scale omni-modal foundation model for e-commerce with unified understanding across text, images, video, and audio modalities.</div>
+                                <div class="paper-why">Demonstrates how diffusion models' rich visual priors can be leveraged for text-conditioned semantic segmentation, expanding their utility beyond image synthesis.</div>
                             </div>
                         </div>
                     
@@ -1587,7 +1593,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            Generated on 2026-05-07 01:14 UTC &middot; Powered by Claude
+            Generated on 2026-05-08 01:15 UTC &middot; Powered by Claude
         </footer>
     </div>
 </body>
