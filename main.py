@@ -110,11 +110,12 @@ def build_telegram_summary(sections: dict, edition_date: str, markets: dict | No
 
     ar = sections.get("ai_research", {})
     if ar.get("papers"):
-        count = len(ar["papers"])
-        first = ar["papers"][0].get("title", "")[:50]
-        lines.append(f"<b>AI Research:</b> {count} papers — {first}...")
+        paper = ar["papers"][0]
+        lines.append(f"<b>Paper of the Day:</b> {paper.get('title', '')[:70]}")
+        for point in paper.get("why_points", [])[:5]:
+            lines.append(f"  • {point}")
     else:
-        lines.append("<b>AI Research:</b> unavailable")
+        lines.append("<b>Paper of the Day:</b> unavailable")
 
     lines.append('\n<a href="https://news.rishotics.com">Read full edition</a>')
     return "\n".join(lines)

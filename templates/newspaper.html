@@ -667,6 +667,29 @@
             color: #555;
             line-height: 1.5;
         }
+        .paper-featured .paper-why-label {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #4338ca;
+            margin: 12px 0 6px;
+        }
+        .paper-featured .paper-why-points {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.65;
+        }
+        .paper-featured .paper-why-points li {
+            margin-bottom: 4px;
+        }
+        .paper-featured .paper-why-points li::marker {
+            color: #4338ca;
+            font-weight: 700;
+        }
 
         /* ── Error ── */
         .section-error {
@@ -1024,7 +1047,7 @@
         <!-- Section 4: AI Research -->
         <section class="section">
             <h2 class="section-header">
-                <span class="section-icon">&#129302;</span> Papers to Read
+                <span class="section-icon">&#129302;</span> Paper of the Day
                 <span class="section-sub">AI &amp; Robotics Research</span>
             </h2>
             {% if ai_research.status is defined and ai_research.status == "error" %}
@@ -1033,21 +1056,28 @@
                 <div class="section-error">{{ ai_research.get("status_note", "No papers available today.") }}</div>
             {% else %}
                 <div class="papers-list">
-                    {% for paper in ai_research.papers %}
-                        <div class="paper">
-                            <div class="paper-number">{{ loop.index }}</div>
-                            <div class="paper-content">
-                                {% set cat_class = "cat-" ~ (paper.category | default("Other") | lower | replace(" ", "-")) %}
-                                <span class="paper-category {{ cat_class }}">{{ paper.category | default("Other") }}</span>
-                                <h3><a href="{{ paper.url }}" target="_blank">{{ paper.title }}</a></h3>
-                                <div class="paper-meta">
-                                    <span class="paper-lab">{{ paper.lab | default("") }}</span>
-                                    {% if paper.authors %} &middot; {{ paper.authors }}{% endif %}
-                                </div>
-                                <div class="paper-why">{{ paper.why | default("") }}</div>
+                    {% set paper = ai_research.papers[0] %}
+                    <div class="paper paper-featured">
+                        <div class="paper-content">
+                            {% set cat_class = "cat-" ~ (paper.category | default("Other") | lower | replace(" ", "-")) %}
+                            <span class="paper-category {{ cat_class }}">{{ paper.category | default("Other") }}</span>
+                            <h3><a href="{{ paper.url }}" target="_blank">{{ paper.title }}</a></h3>
+                            <div class="paper-meta">
+                                <span class="paper-lab">{{ paper.lab | default("") }}</span>
+                                {% if paper.authors %} &middot; {{ paper.authors }}{% endif %}
                             </div>
+                            {% if paper.why_points %}
+                            <div class="paper-why-label">Why it matters</div>
+                            <ol class="paper-why-points">
+                                {% for point in paper.why_points %}
+                                <li>{{ point }}</li>
+                                {% endfor %}
+                            </ol>
+                            {% elif paper.why %}
+                            <div class="paper-why">{{ paper.why }}</div>
+                            {% endif %}
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
             {% endif %}
         </section>

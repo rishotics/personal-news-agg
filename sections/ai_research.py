@@ -145,21 +145,26 @@ def fetch() -> dict:
 
     priority_list = ", ".join(PRIORITY_ORGS[:20])
 
-    system_prompt = f"""You are an AI research editor curating a daily "Papers to Read" column.
-From the papers below, select the 8 most important and interesting ones.
+    system_prompt = f"""You are an AI research editor curating a daily "Paper of the Day" column.
+From the papers below, select THE single most important one — the paper a busy technical reader would most regret missing today. Choose exactly one.
 
 Prioritize papers from these top labs: {priority_list}
 Also prioritize: breakthrough results, new model releases, novel architectures, robotics advances, and papers with practical impact.
 
-For each selected paper, provide:
+Provide:
 - title (original paper title)
 - authors (first 2-3 authors)
 - lab (the institution/company, inferred from authors or content)
-- why (1 sentence on why this paper matters)
 - category (one of: LLM, Vision, Robotics, ML Theory, Multimodal, Safety, Agents, Other)
 - url (original URL)
+- why_points: an array of EXACTLY 5 strings explaining why this paper matters.
+  One idea per string, max 20 words each, plain prose with no numbering or
+  bullet characters. Across the 5, cover: what it does, what is genuinely new,
+  the result that makes it credible, who it affects, and what changes going
+  forward. Be concrete — name the actual method and cite the actual numbers
+  from the paper rather than offering generic praise.
 
-Return ONLY a valid JSON array (no markdown, no code blocks, no extra text): a list of objects with keys: title, authors, lab, why, category, url."""
+Return ONLY a valid JSON object (no markdown, no code blocks, no extra text) with keys: title, authors, lab, category, url, why_points."""
 
     response = summarize(system_prompt, papers_text)
 
@@ -167,14 +172,22 @@ Return ONLY a valid JSON array (no markdown, no code blocks, no extra text): a l
         text = response.strip()
         if text.startswith("```"):
             text = text.split("\n", 1)[1].rsplit("```", 1)[0]
-        # Handle truncated JSON — find the last complete object
-        if not text.endswith("]"):
-            last_brace = text.rfind("}")
-            if last_brace > 0:
-                text = text[:last_brace + 1] + "]"
-        curated = json.loads(text)
+        start, end = text.find("{"), text.rfind("}")
+        if start >= 0 and end > start:
+            text = text[start:end + 1]
+        paper = json.loads(text)
     except json.JSONDecodeError:
         logger.error("Failed to parse AI research summary as JSON")
-        curated = []
+        return {"papers": [], "status_note": "Could not curate today's paper."}
 
-    return {"papers": curated}
+    points = [str(p).strip() for p in (paper.get("why_points") or []) if str(p).strip()]
+    paper["why_points"] = points[:5]
+    # Kept so anything still reading the old single-sentence field works.
+    paper["why"] = points[0] if points else ""
+
+    if len(points) < 5:
+        logger.warning("Paper of the Day returned only %d/5 why_points", len(points))
+
+    logger.info("Paper of the Day: %s", str(paper.get("title", ""))[:70])
+    # Still a list, so template and summary code iterate unchanged.
+    return {"papers": [paper]}
