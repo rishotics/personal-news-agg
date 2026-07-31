@@ -19,7 +19,7 @@ X_BEARER_TOKEN = os.getenv("X_BEARER_TOKEN", "")
 NEWS_API_KEY = os.getenv("NEWS_API_KEY", "")
 
 # Claude
-CLAUDE_MODEL = "claude-sonnet-4-20250514"
+CLAUDE_MODEL = "claude-sonnet-5"
 
 # RSS Feeds for world news
 RSS_FEEDS = [
