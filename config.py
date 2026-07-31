@@ -26,17 +26,61 @@ CLAUDE_MODEL = "claude-sonnet-5"
 # than quietly publishing a near-empty newspaper over a good one.
 MAX_SECTION_FAILURES = 2
 
-# RSS Feeds for world news
-RSS_FEEDS = [
-    "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
-    "https://feeds.reuters.com/reuters/businessNews",
-    "https://hnrss.org/frontpage",
-    "https://techcrunch.com/feed/",
-    "https://feeds.arstechnica.com/arstechnica/technology-lab",
-    "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
-    "https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml",
-]
+# World news, bucketed by topic. Each bucket gets its own Claude call and a
+# guaranteed number of slots, so finance and geopolitics can't be crowded out
+# by whichever tech story happened to look most dramatic that morning.
+#
+# Reuters and AP killed public RSS, so they're proxied through Google News
+# search RSS (free, no key). All feeds below were verified returning entries;
+# re-verify before adding more — a dead feed fails silently as an empty list.
+_GOOGLE_NEWS = (
+    "https://news.google.com/rss/search?q=when:24h+site:{}&hl=en-US&gl=US&ceid=US:en"
+)
+
+NEWS_BUCKETS = {
+    "Top Stories": {
+        "quota": 3,
+        "feeds": [
+            "https://feeds.bbci.co.uk/news/world/rss.xml",
+            "https://www.theguardian.com/world/rss",
+            "https://feeds.npr.org/1004/rss.xml",
+            _GOOGLE_NEWS.format("apnews.com"),
+        ],
+    },
+    "Finance & Markets": {
+        "quota": 3,
+        "feeds": [
+            "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain",
+            "https://www.cnbc.com/id/10000664/device/rss/rss.html",
+            "https://feeds.bloomberg.com/markets/news.rss",
+            "https://www.economist.com/latest/rss.xml",
+            "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
+            _GOOGLE_NEWS.format("reuters.com") + "+business",
+        ],
+    },
+    "Geopolitics": {
+        "quota": 3,
+        "feeds": [
+            "https://www.aljazeera.com/xml/rss/all.xml",
+            "https://foreignpolicy.com/feed/",
+            "https://warontherocks.com/feed/",
+            "https://www.defenseone.com/rss/all/",
+            "https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml",
+        ],
+    },
+    "Tech & AI": {
+        "quota": 3,
+        "feeds": [
+            "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
+            "https://techcrunch.com/feed/",
+            "https://feeds.arstechnica.com/arstechnica/technology-lab",
+            "https://hnrss.org/frontpage",
+        ],
+    },
+}
+
+# Flat list retained for any consumer that just wants every world-news feed.
+RSS_FEEDS = [url for b in NEWS_BUCKETS.values() for url in b["feeds"]]
 
 # Twitter/X accounts to track (seed list, customize as needed)
 TWITTER_ACCOUNTS = [
@@ -104,8 +148,8 @@ YC_TWITTER_ACCOUNTS = ["ycombinator"]
 YC_SECTORS_OF_INTEREST = ["AI", "crypto", "fintech", "developer tools", "infrastructure"]
 
 # Limits
-MAX_ARTICLES_BEFORE_DEDUP = 50
-MAX_CURATED_ARTICLES = 10
+MAX_ARTICLES_BEFORE_DEDUP = 50  # per bucket
+# World-news volume is now set per bucket via NEWS_BUCKETS[...]["quota"]
 MAX_TWEETS_PER_SEARCH = 100
 PRODUCT_HUNT_PICK_COUNT = 5
 MAX_FUNDING_ITEMS = 8
