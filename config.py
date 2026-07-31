@@ -21,6 +21,11 @@ NEWS_API_KEY = os.getenv("NEWS_API_KEY", "")
 # Claude
 CLAUDE_MODEL = "claude-sonnet-5"
 
+# Health thresholds. One dead RSS feed shouldn't kill the edition, but a
+# systemic failure (retired model, bad API key, network) should go red rather
+# than quietly publishing a near-empty newspaper over a good one.
+MAX_SECTION_FAILURES = 2
+
 # RSS Feeds for world news
 RSS_FEEDS = [
     "https://feeds.bbci.co.uk/news/world/rss.xml",
@@ -91,6 +96,11 @@ INDIA_RSS_FEEDS = [
 
 # YC Batch
 MAX_YC_PICKS = 8
+
+# Official YC handle(s) — primary source for the YC section.
+# Verify any handle added here actually exists: the X API rejects the whole
+# query with a 400 if a single username is unparsable.
+YC_TWITTER_ACCOUNTS = ["ycombinator"]
 YC_SECTORS_OF_INTEREST = ["AI", "crypto", "fintech", "developer tools", "infrastructure"]
 
 # Limits

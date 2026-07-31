@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 
 from jinja2 import Environment, FileSystemLoader
 
-from config import OUTPUT_DIR, TEMPLATES_DIR
+from config import OUTPUT_DIR, TEMPLATES_DIR, MAX_SECTION_FAILURES
 from sections import world_news, twitter_feed, product_hunt, market_data, ai_research, funding_rounds, yc_batch, india_startups
 from services import mongo_store, telegram_bot
 
@@ -177,17 +177,35 @@ def main():
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
     }
 
+    # Health check. A single-section run is expected to "fail" the others, so
+    # only judge a full edition.
+    failed = [n for n, s in sections.items() if s.get("status") != "success"]
+    degraded = not args.section and len(failed) > MAX_SECTION_FAILURES
+    if failed:
+        logger.warning("%d/%d sections failed: %s", len(failed), len(SECTION_MAP), ", ".join(failed))
+    if degraded:
+        logger.error(
+            "DEGRADED: %d of %d sections failed (threshold %d). Not publishing "
+            "over the last good edition.",
+            len(failed), len(SECTION_MAP), MAX_SECTION_FAILURES,
+        )
+
     html = render_html(context)
     OUTPUT_DIR.mkdir(exist_ok=True)
     html_path = OUTPUT_DIR / f"newspaper_{date_str}.html"
     html_path.write_text(html, encoding="utf-8")
-    # Also write a "latest" symlink/copy for Nginx to serve
-    latest_path = OUTPUT_DIR / "index.html"
-    latest_path.write_text(html, encoding="utf-8")
-    logger.info("HTML saved to %s (+ index.html)", html_path)
+
+    if degraded:
+        # Keep the dated snapshot for debugging, but leave index.html alone so
+        # the site keeps yesterday's real edition instead of a hollow one.
+        logger.info("HTML saved to %s (index.html left untouched)", html_path)
+    else:
+        latest_path = OUTPUT_DIR / "index.html"
+        latest_path.write_text(html, encoding="utf-8")
+        logger.info("HTML saved to %s (+ index.html)", html_path)
 
     # Save to MongoDB
-    if not args.no_mongo and not args.section:
+    if not args.no_mongo and not args.section and not degraded:
         edition = {
             "edition_number": edition_number,
             "date": date_str,
@@ -208,10 +226,23 @@ def main():
 
     # Send via Telegram
     if not args.no_telegram and not args.section:
-        summary = build_telegram_summary(sections, edition_date, markets)
-        telegram_bot.send_summary(summary)
-        telegram_bot.send_html_file(html_path, caption=f"Daily Digest - {edition_date}")
-        logger.info("Sent to Telegram")
+        if degraded:
+            telegram_bot.send_summary(
+                f"<b>Daily Digest FAILED - {edition_date}</b>\n\n"
+                f"{len(failed)} of {len(SECTION_MAP)} sections failed: "
+                f"{', '.join(failed)}\n\n"
+                "Edition not published; the site still shows the last good one."
+            )
+            logger.info("Sent failure alert to Telegram")
+        else:
+            summary = build_telegram_summary(sections, edition_date, markets)
+            telegram_bot.send_summary(summary)
+            telegram_bot.send_html_file(html_path, caption=f"Daily Digest - {edition_date}")
+            logger.info("Sent to Telegram")
+
+    if degraded:
+        logger.error("Exiting non-zero so the scheduled run reports failure.")
+        sys.exit(1)
 
     logger.info("Done! Edition %d for %s", edition_number, date_str)
 

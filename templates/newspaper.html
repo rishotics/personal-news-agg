@@ -525,6 +525,15 @@
             padding-top: 4px;
         }
         .yc-content { flex: 1; }
+        .yc-updates {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+            border-left: 3px solid #f97316;
+            padding: 2px 0 2px 12px;
+            margin-bottom: 14px;
+        }
         .yc-content h3 {
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 16px;
@@ -880,13 +889,17 @@
         <section class="section">
             <h2 class="section-header">
                 <span class="section-icon">&#128640;</span> YC {{ yc_batch.batch | default("Latest") }}
-                <span class="section-sub">Interesting Companies from the Latest Batch</span>
+                <span class="section-sub">Companies &amp; Updates from Y Combinator</span>
             </h2>
             {% if yc_batch.status is defined and yc_batch.status == "error" %}
                 <div class="section-error">This section is temporarily unavailable.</div>
-            {% elif not yc_batch.companies %}
-                <div class="section-error">No YC companies available today.</div>
             {% else %}
+                {% if yc_batch.updates %}
+                <div class="yc-updates">{{ yc_batch.updates }}</div>
+                {% endif %}
+                {% if not yc_batch.companies and not yc_batch.updates %}
+                <div class="section-error">No YC companies available today.</div>
+                {% endif %}
                 <div class="yc-list">
                     {% for company in yc_batch.companies %}
                     <div class="yc-company">
