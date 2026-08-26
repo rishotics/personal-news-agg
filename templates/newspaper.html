@@ -691,6 +691,70 @@
             font-weight: 700;
         }
 
+        /* ── This Day ── */
+        .thisday-block {
+            background: #fffaf2;
+            border: 1px solid #f2e2c9;
+            border-left: 4px solid #d97706;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+        }
+        .thisday-occasion {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #92400e;
+        }
+        .thisday-panchang {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #b45309;
+            margin-top: 2px;
+            margin-bottom: 10px;
+        }
+        .thisday-story p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #444;
+            margin: 0 0 6px;
+        }
+        .thisday-label {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #4338ca;
+            margin-bottom: 10px;
+        }
+        .history-item {
+            display: flex;
+            gap: 14px;
+            padding: 8px 0;
+            border-bottom: 1px dotted #e5e5e5;
+        }
+        .history-item:last-child { border-bottom: none; }
+        .history-year {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #4338ca;
+            min-width: 52px;
+        }
+        .history-event {
+            font-size: 14px;
+            color: #2c2c2c;
+            line-height: 1.5;
+        }
+        .history-why {
+            font-size: 13px;
+            color: #777;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
         /* ── Error ── */
         .section-error {
             padding: 16px 20px;
@@ -1079,6 +1143,46 @@
                         </div>
                     </div>
                 </div>
+            {% endif %}
+        </section>
+
+        <!-- Section: This Day -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#128329;</span> This Day
+                <span class="section-sub">Significance &amp; History</span>
+            </h2>
+            {% if this_day.status is defined and this_day.status == "error" %}
+                <div class="section-error">This section is temporarily unavailable.</div>
+            {% else %}
+                {% if this_day.story %}
+                <div class="thisday-block">
+                    <div class="thisday-occasion">{{ this_day.occasion }}</div>
+                    {% if this_day.panchang %}
+                    <div class="thisday-panchang">{{ this_day.panchang }}</div>
+                    {% endif %}
+                    <div class="thisday-story">
+                        {% for line in this_day.story %}<p>{{ line }}</p>{% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% if this_day.history %}
+                <div class="thisday-history">
+                    <div class="thisday-label">On This Day in History</div>
+                    {% for h in this_day.history %}
+                    <div class="history-item">
+                        <div class="history-year">{{ h.year }}</div>
+                        <div class="history-content">
+                            <div class="history-event">{{ h.event }}</div>
+                            {% if h.why %}<div class="history-why">{{ h.why }}</div>{% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if not this_day.story and not this_day.history %}
+                <div class="section-error">Nothing available for today.</div>
+                {% endif %}
             {% endif %}
         </section>
 

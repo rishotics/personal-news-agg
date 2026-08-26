@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from jinja2 import Environment, FileSystemLoader
 
 from config import OUTPUT_DIR, TEMPLATES_DIR, MAX_SECTION_FAILURES
-from sections import world_news, twitter_feed, product_hunt, market_data, ai_research, funding_rounds, yc_batch, india_startups
+from sections import world_news, twitter_feed, product_hunt, market_data, ai_research, funding_rounds, yc_batch, india_startups, this_day
 from services import mongo_store, telegram_bot
 
 logging.basicConfig(
@@ -26,6 +26,7 @@ SECTION_MAP = {
     "twitter": ("Twitter Feed", twitter_feed.fetch),
     "product_hunt": ("Product Hunt", product_hunt.fetch),
     "ai_research": ("AI Research", ai_research.fetch),
+    "this_day": ("This Day", this_day.fetch),
 }
 
 
@@ -117,6 +118,16 @@ def build_telegram_summary(sections: dict, edition_date: str, markets: dict | No
     else:
         lines.append("<b>Paper of the Day:</b> unavailable")
 
+    td = sections.get("this_day", {})
+    if td.get("story"):
+        lines.append(f"\n<b>This Day — {td.get('occasion', '')}</b>")
+        for line in td["story"]:
+            lines.append(f"  {line}")
+    if td.get("history"):
+        lines.append("\n<b>On This Day in History</b>")
+        for h in td["history"]:
+            lines.append(f"  • <b>{h.get('year', '')}</b> — {h.get('event', '')}")
+
     lines.append('\n<a href="https://news.rishotics.com">Read full edition</a>')
     return "\n".join(lines)
 
@@ -172,6 +183,7 @@ def main():
         "funding_rounds": sections.get("funding_rounds", {}),
         "yc_batch": sections.get("yc_batch", {}),
         "india_startups": sections.get("india_startups", {}),
+        "this_day": sections.get("this_day", {}),
         # Rename 'items' key to avoid clash with dict.items() in Jinja2
         "india_news": sections.get("india_startups", {}).get("items", []),
         "markets": markets.get("items", []),
