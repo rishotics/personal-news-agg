@@ -691,6 +691,70 @@
             font-weight: 700;
         }
 
+        /* ── This Day ── */
+        .thisday-block {
+            background: #fffaf2;
+            border: 1px solid #f2e2c9;
+            border-left: 4px solid #d97706;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+        }
+        .thisday-occasion {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #92400e;
+        }
+        .thisday-panchang {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #b45309;
+            margin-top: 2px;
+            margin-bottom: 10px;
+        }
+        .thisday-story p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #444;
+            margin: 0 0 6px;
+        }
+        .thisday-label {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #4338ca;
+            margin-bottom: 10px;
+        }
+        .history-item {
+            display: flex;
+            gap: 14px;
+            padding: 8px 0;
+            border-bottom: 1px dotted #e5e5e5;
+        }
+        .history-item:last-child { border-bottom: none; }
+        .history-year {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #4338ca;
+            min-width: 52px;
+        }
+        .history-event {
+            font-size: 14px;
+            color: #2c2c2c;
+            line-height: 1.5;
+        }
+        .history-why {
+            font-size: 13px;
+            color: #777;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
         /* ── Error ── */
         .section-error {
             padding: 16px 20px;
@@ -732,7 +796,7 @@
             <h1>The Daily Digest</h1>
             <div class="subtitle">Your Personal News Briefing</div>
             <div class="date-line">
-                <span>Edition No. 278</span>
+                <span>Edition No. 279</span>
                 <span>August 26, 2026</span>
                 <span>Curated by Claude</span>
             </div>
@@ -816,33 +880,33 @@
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Nifty 50</span>
-                    <span class="ticker-price">24,335</span>
-                    <span class="ticker-change up">
-                        +0.34%
+                    <span class="ticker-price">24,260</span>
+                    <span class="ticker-change down">
+                        -0.31%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Sensex</span>
-                    <span class="ticker-price">77,656</span>
-                    <span class="ticker-change up">
-                        +0.15%
+                    <span class="ticker-price">77,582</span>
+                    <span class="ticker-change down">
+                        -0.1%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">FTSE 100</span>
-                    <span class="ticker-price">10,886</span>
-                    <span class="ticker-change up">
-                        +0.64%
+                    <span class="ticker-price">10,878</span>
+                    <span class="ticker-change down">
+                        -0.07%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Nikkei 225</span>
-                    <span class="ticker-price">65,728</span>
-                    <span class="ticker-change down">
-                        -0.19%
+                    <span class="ticker-price">66,262</span>
+                    <span class="ticker-change up">
+                        +0.62%
                     </span>
                 </div>
                 
@@ -855,9 +919,9 @@
                 
                 <div class="ticker-item">
                     <span class="ticker-name">BTC</span>
-                    <span class="ticker-price">$78,768</span>
+                    <span class="ticker-price">$79,032</span>
                     <span class="ticker-change down">
-                        -1.3%
+                        -1.19%
                     </span>
                 </div>
                 
@@ -865,15 +929,15 @@
                     <span class="ticker-name">SOL</span>
                     <span class="ticker-price">$97</span>
                     <span class="ticker-change down">
-                        -3.41%
+                        -3.18%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">ETH</span>
-                    <span class="ticker-price">$2,456</span>
+                    <span class="ticker-price">$2,464</span>
                     <span class="ticker-change down">
-                        -1.51%
+                        -0.93%
                     </span>
                 </div>
                 
@@ -886,17 +950,17 @@
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Gold</span>
-                    <span class="ticker-price">4,714.80</span>
-                    <span class="ticker-change up">
-                        +0.43%
+                    <span class="ticker-price">4,682.70</span>
+                    <span class="ticker-change down">
+                        -0.25%
                     </span>
                 </div>
                 
                 <div class="ticker-item">
                     <span class="ticker-name">Crude Oil</span>
-                    <span class="ticker-price">80.54</span>
+                    <span class="ticker-price">80.13</span>
                     <span class="ticker-change down">
-                        -2.21%
+                        -2.71%
                     </span>
                 </div>
                 
@@ -933,7 +997,7 @@
                             <img class="article-hero-img" src="https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/e708/live/0a3afb60-a0ad-11f1-a54e-272d756c341e.jpg" alt="Canada Fires Back with Retaliatory Tariffs Up to 50% on US Goods" onerror="this.style.display='none'">
                             <h3><a href="https://www.bbc.co.uk/news/articles/c3v4xg5klx7o?at_medium=RSS&at_campaign=rss" target="_blank">Canada Fires Back with Retaliatory Tariffs Up to 50% on US Goods</a></h3>
                             <div class="source">BBC News</div>
-                            <div class="summary">Canada announced dollar-for-dollar tariffs on American steel, furniture, tuna and other goods after trade talks with Washington collapsed. The escalating trade war threatens deep economic damage on both sides of the border and could ripple into US Senate races in affected states.</div>
+                            <div class="summary">Canada announced dollar-for-dollar tariffs on US steel, furniture, tuna and other goods after trade talks with Washington collapsed. The tit-for-tat escalation threatens deeper economic damage to two of the world's most integrated economies.</div>
                         </div>
                     
                 
@@ -942,25 +1006,25 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxPUTFJYWp5U2FxQlpxYjVCb1p5dThHZmx4NGNwRnpybDZSMEVnZVpBMWZuaU9CSDlieHVYU3kzOUQ4TEl6RjlBZmxwd2dBQW9qclA0VG1RQnRBcUdkSDRfbE1RTmdib2tzRFUyTWwxTmVlZE1FVkt5QmR6M0ZVVUlyQ1pQN2E0S2pJUnJxb3RYZlZTT3BodVE?oc=5" target="_blank">Supreme Court Backs Trump's Mail-In Voting Restrictions Ahead of Midterms</a></h3>
-                                <div class="source">AP News</div>
-                                <div class="summary">The Supreme Court sided with the Trump administration's plan to restrict mail-in voting, allowing the policy to take effect before the midterm elections. Critics warn the ruling could sow confusion and disenfranchise voters just months before a pivotal election.</div>
-                            </div>
-                            
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://www.theguardian.com/world/2026/aug/25/gang-attack-kenscoff-port-au-prince-haiti" target="_blank">Gang Attack Near Haiti's Capital Kills 47, Dozens Kidnapped</a></h3>
+                                <h3><a href="https://www.theguardian.com/world/2026/aug/25/gang-attack-kenscoff-port-au-prince-haiti" target="_blank">Gang Massacre Near Haiti's Capital Leaves 47 Dead, Dozens Kidnapped</a></h3>
                                 <div class="source">The Guardian</div>
-                                <div class="summary">At least 47 people were killed and dozens abducted after a gang assault on Kenscoff near Port-au-Prince, with the gang leader threatening to kill hostages. The violence underscores the deepening collapse of security in Haiti as armed groups extend control beyond the capital.</div>
+                                <div class="summary">A gang attack in Kenscoff, near Port-au-Prince, killed at least 47 people and left dozens more kidnapped, with a gang leader threatening to kill hostages if authorities retaliate. It marks one of the largest mass kidnappings in Haiti in recent years, underscoring the country's spiraling security collapse.</div>
                             </div>
                             
                                 <img class="article-thumb" src="https://i.guim.co.uk/img/media/68cb4b627f9923f458e7a6ed763c3cd35aa0ea00/197_0_4560_3648/master/4560.jpg?width=140&quality=85&auto=format&fit=max&s=be54eedfec8f207cd3909472c180b32c" alt="" onerror="this.style.display='none'">
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://www.npr.org/2026/08/25/g-s1-140004/up-first-newsletter-iran-economic-war-scotus-mail-in-voting-dhs-privacy" target="_blank">Supreme Court Backs Trump's Mail-In Voting Restrictions Ahead of Midterms</a></h3>
+                                <div class="source">NPR Topics: World</div>
+                                <div class="summary">The US Supreme Court sided with President Trump's plan to restrict mail-in voting, a ruling that could reshape ballot access before the midterm elections. The decision hands the administration a significant win in its long push to limit voting by mail.</div>
+                            </div>
                             
                         </div>
                     
@@ -973,9 +1037,9 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.bloomberg.com/news/articles/2026-08-25/short-squeeze-in-us-swaps-options-shows-bessent-put-at-work" target="_blank">Bessent's Bond Buyback Plan Sparks Fierce Debate as 'Put' Shows Signs of Working</a></h3>
-                                <div class="source">Bloomberg Markets / NYT</div>
-                                <div class="summary">Treasury Secretary Scott Bessent's surprise intervention to lower US borrowing costs via expanded bond buybacks is triggering a short squeeze in long bonds, even as critics including a former mentor question its wisdom. The move marks an unusual and contentious use of Treasury policy to directly influence bond markets, with major implications for yields and market confidence.</div>
+                                <h3><a href="https://www.bloomberg.com/news/articles/2026-08-26/jack-ma-s-buying-does-little-to-ease-alibaba-share-sale-fallout" target="_blank">Alibaba's $10 Billion Bet Backfires as Jack Ma's Buying Fails to Calm Markets</a></h3>
+                                <div class="source">Bloomberg</div>
+                                <div class="summary">Alibaba shares remain under pressure after its $10.2 billion share placement to fund AI investments, even as founder Jack Ma personally bought stock to shore up sentiment. Investors remain skeptical about how the tech giant is financing its AI ambitions, raising questions about the broader AI capex boom.</div>
                             </div>
                             
                         </div>
@@ -986,25 +1050,25 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.cnbc.com/2026/08/23/wells-fargo-citigroup-deals-regional-banks.html" target="_blank">Wells Fargo, Citigroup Eye Regional Bank Takeovers as Regulators Open Door</a></h3>
-                                <div class="source">CNBC</div>
-                                <div class="summary">Regulatory changes have given Wells Fargo and Citigroup room to pursue acquisitions of major regional banks, with five candidates emerging as likely targets. A wave of megadeals could reshape the US banking landscape after years of regulatory constraints on big-bank consolidation.</div>
-                            </div>
-                            
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://www.wsj.com/tech/ai/anthropic-expected-to-tell-investors-it-sees-over-30-trillion-in-potential-revenue-a611efea?mod=rss_markets_main" target="_blank">Anthropic Tells Investors It Sees Over $30 Trillion in Potential Revenue</a></h3>
+                                <h3><a href="https://www.wsj.com/tech/ai/anthropic-expected-to-tell-investors-it-sees-over-30-trillion-in-potential-revenue-a611efea?mod=rss_markets_main" target="_blank">Anthropic Tells Investors It Sees $30 Trillion Revenue Potential, Topping SpaceX</a></h3>
                                 <div class="source">WSJ.com: Markets</div>
-                                <div class="summary">The AI startup is reportedly projecting a total addressable market exceeding $30 trillion, surpassing even SpaceX's ambitious revenue estimates. The staggering figure underscores how AI valuations are being justified by increasingly speculative long-term projections, raising questions about a potential bubble.</div>
+                                <div class="summary">The AI startup is reportedly pitching investors on a revenue opportunity larger than even SpaceX's ambitious projections, underscoring the scale of capital chasing generative AI. Such eye-popping forecasts are fueling both investor enthusiasm and concerns about a bubble in AI valuations.</div>
                             </div>
                             
                                 <img class="article-thumb" src="https://images.wsj.net/im-84285152" alt="" onerror="this.style.display='none'">
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://www.bloomberg.com/news/articles/2026-08-26/nvidia-earnings-give-investors-a-barometer-for-state-of-ai-trade" target="_blank">Nvidia Earnings Loom as Make-or-Break Moment for AI Trade</a></h3>
+                                <div class="source">Bloomberg</div>
+                                <div class="summary">Wall Street is bracing for Nvidia's earnings report, seen less as a read on the chipmaker itself and more as a barometer for the entire AI-driven market rally. With stocks and Treasuries wobbling ahead of the release, the results could set the tone for markets into year-end.</div>
+                            </div>
                             
                         </div>
                     
@@ -1017,9 +1081,22 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.nytimes.com/2026/08/25/us/politics/trump-saudi-nuclear-deal-congress-review.html" target="_blank">Saudi Nuclear Deal Heads to Congress, Reviving Proliferation Fears</a></h3>
+                                <h3><a href="https://www.aljazeera.com/economy/2026/8/26/top-official-says-iran-oman-have-agreed-new-temporary-hormuz-route?traffic_source=rss" target="_blank">Iran, Oman Agree Temporary Shipping Route Through Hormuz</a></h3>
+                                <div class="source">Al Jazeera</div>
+                                <div class="summary">Iran's deputy foreign minister says a new temporary route through the Strait of Hormuz has been agreed with Oman, with entry and part of the exit running through Iranian waters. The arrangement underscores how the standoff over sanctions and tensions in the Gulf continues to reshape critical global shipping lanes.</div>
+                            </div>
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://www.nytimes.com/2026/08/25/us/politics/trump-saudi-nuclear-deal-congress-review.html" target="_blank">Trump Sends Saudi Nuclear Deal to Congress, Reviving Proliferation Fears</a></h3>
                                 <div class="source">The New York Times</div>
-                                <div class="summary">The Trump administration submitted a civil nuclear cooperation agreement with Saudi Arabia for congressional review, with provisions allowing the kingdom to enrich uranium drawing bipartisan alarm. Critics warn the deal could trigger a broader nuclear arms race in the Middle East amid ongoing regional tensions with Iran.</div>
+                                <div class="summary">The administration submitted a civil nuclear cooperation agreement with Saudi Arabia for congressional review, including provisions that could allow the kingdom to enrich uranium. Democrats and nonproliferation experts warn the deal risks setting a dangerous precedent for nuclear spread in the Middle East.</div>
                             </div>
                             
                                 <img class="article-thumb" src="https://static01.nyt.com/images/2026/08/25/multimedia/25dc-saudi-agreement-hqgf/25dc-saudi-agreement-hqgf-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
@@ -1032,23 +1109,12 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.aljazeera.com/news/liveblog/2026/8/26/iran-war-live-iran-says-hormuz-remains-closed-despite-oman-rout-deal?traffic_source=rss" target="_blank">Iran Insists Strait of Hormuz Still Closed Despite Oman Deal</a></h3>
-                                <div class="source">Al Jazeera</div>
-                                <div class="summary">Tehran clarified that a newly struck route agreement with Oman does not mean the critical oil chokepoint has reopened, keeping global energy markets on edge. The standoff underscores how the US-Iran conflict continues to threaten global shipping and crude supplies.</div>
+                                <h3><a href="https://www.defenseone.com/threats/2026/08/treasury-sanctions-iranian-hackers-tied-critical-infrastructure-breaches/415622/" target="_blank">Treasury Sanctions Iranian Hackers Behind Infrastructure Breaches</a></h3>
+                                <div class="source">Defense One</div>
+                                <div class="summary">The U.S. Treasury sanctioned Iranian hackers linked to breaches of critical infrastructure, with four of the five individuals also facing Justice Department charges in an expanded espionage case. The action reflects escalating cyber-front tensions running parallel to the broader U.S.-Iran sanctions campaign.</div>
                             </div>
                             
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://www.aljazeera.com/news/2026/8/26/is-sudans-battlefield-shaping-the-terms-of-its-next-political-phase?traffic_source=rss" target="_blank">Sudan's War Enters Pivotal Phase as Army Gains Ground, RSF Fractures</a></h3>
-                                <div class="source">Al Jazeera</div>
-                                <div class="summary">Battlefield momentum is shifting in Sudan as army advances and defections from the Rapid Support Forces coincide with a political push by military leader al-Burhan. The developments could reshape the terms of any eventual settlement in a conflict that has devastated millions.</div>
-                            </div>
+                                <img class="article-thumb" src="https://cdn.defenseone.com/media/img/cd/2026/08/25/082526TreasuryNG-1/thumb.jpg" alt="" onerror="this.style.display='none'">
                             
                         </div>
                     
@@ -1061,42 +1127,42 @@
                     
                         <div class="article">
                             <div class="article-text">
-                                <h3><a href="https://www.nytimes.com/2026/08/25/technology/spacex-louisiana-spaceport.html" target="_blank">SpaceX Bets $100 Billion on Second Starbase in Louisiana</a></h3>
+                                <h3><a href="https://arstechnica.com/information-technology/2026/08/nvidia-discloses-21b-stake-in-spacex/" target="_blank">Nvidia Reveals $21 Billion Stake in SpaceX</a></h3>
+                                <div class="source">Ars Technica</div>
+                                <div class="summary">The chipmaker's filing follows Elon Musk's announcement of an exclusive deal to supply hardware for SpaceX's data centers. It underscores the deepening financial entanglement between AI infrastructure giants and Musk's space empire.</div>
+                            </div>
+                            
+                                <img class="article-thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2026/08/ftcms_116f79c4-b712-471b-b46a-ace5e4d7dda4.avif" alt="" onerror="this.style.display='none'">
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://www.nytimes.com/2026/08/26/technology/bill-gates-ai-risks.html" target="_blank">Bill Gates Warns Big Tech Is Downplaying AI's Dangers</a></h3>
                                 <div class="source">NYT > Technology</div>
-                                <div class="summary">SpaceX plans to build a massive new spaceport in Louisiana, its second private launch site after Texas, with construction starting in 2027 and Starship flights targeted for 2029. The scale of investment underscores SpaceX's dominance in space infrastructure and its deepening ties to Nvidia, which just disclosed a $21 billion stake in the company.</div>
+                                <div class="summary">In a wide-ranging interview, Gates said the industry is underselling risks including mass unemployment and bioterrorism potential from advanced AI. His comments add a prominent tech insider's voice to growing concerns about unchecked AI development.</div>
+                            </div>
+                            
+                                <img class="article-thumb" src="https://static01.nyt.com/images/2026/08/26/multimedia/26biz-gates-ai-01-jgcq/26biz-gates-ai-01-jgcq-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
+                            
+                        </div>
+                    
+                
+                    
+
+                    
+                        <div class="article">
+                            <div class="article-text">
+                                <h3><a href="https://www.nytimes.com/2026/08/25/technology/spacex-louisiana-spaceport.html" target="_blank">SpaceX to Build $100 Billion Second Spaceport in Louisiana</a></h3>
+                                <div class="source">NYT > Technology</div>
+                                <div class="summary">The facility would be SpaceX's second private launch site after Starbase in Texas, with construction starting in 2027 and a possible Starship flight by 2029. The massive investment signals SpaceX's ambitions to dramatically scale up rocket launch capacity.</div>
                             </div>
                             
                                 <img class="article-thumb" src="https://static01.nyt.com/images/2026/08/25/multimedia/25biz-spacex-louisiana-sub-wfth/25biz-spacex-louisiana-sub-wfth-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
-                            
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://arstechnica.com/security/2026/08/vulnerability-giving-attackers-full-control-of-macs-is-under-active-exploitation/" target="_blank">Mac Vulnerability Under Active Attack Lets Hackers Bypass Passwords</a></h3>
-                                <div class="source">Ars Technica</div>
-                                <div class="summary">A screen-sharing flaw in macOS is being actively exploited, allowing remote attackers to gain full control of machines without a password. The bug adds to a wave of serious security disclosures this week, including a Grok exploit and a massive credential-leaking supply-chain attack tied to a compromised AI package.</div>
-                            </div>
-                            
-                                <img class="article-thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2026/08/macbook-pro-500x500.jpg" alt="" onerror="this.style.display='none'">
-                            
-                        </div>
-                    
-                
-                    
-
-                    
-                        <div class="article">
-                            <div class="article-text">
-                                <h3><a href="https://www.nytimes.com/2026/08/25/technology/instagram-adam-mosseri-trial.html" target="_blank">Instagram Chief Faces Grilling in Teen Safety Trial</a></h3>
-                                <div class="source">NYT > Technology</div>
-                                <div class="summary">Adam Mosseri testified that there are 'no silver bullets' for protecting young users, as states pursue claims that Instagram built addictive features targeting minors. The bellwether case could shape regulation and liability standards for social media platforms nationwide.</div>
-                            </div>
-                            
-                                <img class="article-thumb" src="https://static01.nyt.com/images/2026/08/25/multimedia/25biz-meta-trial-lbtf/25biz-meta-trial-lbtf-mediumSquareAt3X.jpg" alt="" onerror="this.style.display='none'">
                             
                         </div>
                     
@@ -1123,7 +1189,7 @@
             </h2>
             
                 
-                <div class="yc-updates">YC highlighted that its startups are publishing serious AI research at top conferences (NeurIPS, ICLR, ICML), celebrated Mundo AI's $20M Series A, and launched 'Send a SAFE,' a free tool to generate and send SAFEs in minutes, built on the original YC SAFE created in 2013.</div>
+                <div class="yc-updates">YC highlighted that its startups are publishing serious AI research at top conferences like NeurIPS, ICLR, and ICML, celebrated Mundo AI's $20M Series A, and launched 'Send a SAFE,' a free tool to generate and sign SAFEs in minutes, building on the original SAFE created in 2013.</div>
                 
                 
                 <div class="yc-list">
@@ -1132,7 +1198,7 @@
                         <div class="yc-number">1</div>
                         <div class="yc-content">
                             <h3>
-                                <a href="https://t.co/MCDJ8FjcVq" target="_blank">Mundo AI</a>
+                                <a href="" target="_blank">Mundo AI</a>
                                 <span class="yc-batch-tag">Latest</span>
                                 
                                 
@@ -1165,37 +1231,37 @@
                         </div>
                     
                     <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/airbound-bags-37-mn-from-greenoaks-doordash-to-scale-drone-manufacturing/" target="_blank">Airbound Raises $37 Mn From Greenoaks, DoorDash To Scale Drone Manufacturing</a></h3>
+                        <h3><a href="https://inc42.com/buzz/voice-ai-startup-ringg-bags-5-5-mn-from-arkam-ventures/" target="_blank">Ringg AI Closes Series A At $15.5 Mn After Additional $10 Mn</a></h3>
                         <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Bengaluru-based dronetech startup Airbound raised $37 Mn in a Series A round led by Greenoaks and DoorDash. The funds will be used to expand aircraft engineering, manufacturing and commercial drone delivery operations in India.</div>
+                        <div class="india-summary">Bengaluru-based voice AI startup Ringg AI raised an additional $10 Mn led by Peak XV Partners, taking its total Series A to $15.5 Mn. The company works with clients like Policybazaar, CRED, Flipkart, Groww and Practo.</div>
                     </div>
                 
                     
                     <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/matter-nets-25-mn-to-scale-manufacturing-launch-four-new-electric-motorcycles/" target="_blank">MATTER Nets $25 Mn To Scale Manufacturing, Launch Four New Electric Motorcycles</a></h3>
-                        <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Ahmedabad-based electric motorcycle startup MATTER Motor Works raised $25 Mn to scale manufacturing capacity. The company also plans to launch four new electric motorcycle models with the fresh capital.</div>
-                    </div>
-                
-                    
-                    <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/nexedge-capital-nets-20-mn-to-scale-hni-wealth-management-platform/" target="_blank">Nexedge Capital Nets $20 Mn To Scale HNI Wealth Management Platform</a></h3>
-                        <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Wealth management startup Nexedge Capital raised $20 Mn (₹191.4 Cr) in its maiden funding round co-led by Mirae Asset. The capital will be used to scale its platform targeting high net-worth individuals.</div>
-                    </div>
-                
-                    
-                    <div class="india-item">
-                        <h3><a href="https://yourstory.com/2026/08/germanys-infineon-is-acquiring-bengaluru-based-c2i-semiconductors" target="_blank">Germany's Infineon Acquiring Bengaluru's C2i Semiconductors</a></h3>
-                        <div class="india-source">YourStory RSS Feed</div>
-                        <div class="india-summary">Infineon is acquiring Bengaluru-based C2i Semiconductors to strengthen its AI data-centre power-management capabilities. The deal combines digital power expertise with semiconductor scale as AI workloads intensify power-delivery challenges.</div>
+                        <h3><a href="https://yourstory.com/2026/08/ev-startup-matter-raises-25-million-scale-electric-motorcycle-business" target="_blank">EV Startup MATTER Raises $25M To Scale Electric Motorcycle Business</a></h3>
+                        <div class="india-source">YourStory</div>
+                        <div class="india-summary">Ahmedabad-based MATTER will use the funding to scale manufacturing, expand distribution and launch four new motorcycles as India's electric two-wheeler market grows. The round supports the company's push into a rapidly expanding EV segment.</div>
                     </div>
                 
                     
                     <div class="india-item">
                         <h3><a href="https://inc42.com/buzz/verlinvest-mirchandani-family-raise-stakes-in-epigamia-in-20-mn-secondary-deal/" target="_blank">Verlinvest, Mirchandani Family Raise Stakes In Epigamia In $20 Mn Secondary Deal</a></h3>
                         <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">D2C yogurt brand Epigamia's existing shareholders Verlinvest and the Mirchandani family increased their stakes via a $20 Mn secondary transaction. The deal signals continued investor confidence in the D2C food and beverage space.</div>
+                        <div class="india-summary">D2C yogurt brand Epigamia's existing shareholders Verlinvest and the Mirchandani family increased their stakes through a $20 Mn secondary transaction. The deal signals continued investor confidence in India's D2C food and beverage space.</div>
+                    </div>
+                
+                    
+                    <div class="india-item">
+                        <h3><a href="https://yourstory.com/2026/08/germanys-infineon-is-acquiring-bengaluru-based-c2i-semiconductors" target="_blank">Germany's Infineon Acquiring Bengaluru's C2i Semiconductors</a></h3>
+                        <div class="india-source">YourStory</div>
+                        <div class="india-summary">Infineon's acquisition of C2i strengthens its AI data-centre power-management capabilities, combining digital power expertise with semiconductor scale. The deal comes as rising AI workloads intensify electricity and power-delivery challenges globally.</div>
+                    </div>
+                
+                    
+                    <div class="india-item">
+                        <h3><a href="https://inc42.com/buzz/mamaearth-parent-honasa-calls-off-%e2%82%b9135-cr-fluence-pharma-acquisition/" target="_blank">Mamaearth Parent Honasa Calls Off ₹135 Cr Fluence Pharma Acquisition</a></h3>
+                        <div class="india-source">Inc42 Media</div>
+                        <div class="india-summary">Beauty and personal care major Honasa Consumer has called off its proposed acquisition of Fluence Pharma. The move marks a reversal of the company's earlier M&A plans in the pharma-adjacent space.</div>
                     </div>
                 
                     
@@ -1205,9 +1271,9 @@
                         </div>
                     
                     <div class="india-item">
-                        <h3><a href="https://economictimes.indiatimes.com/tech/startups/wazirx-launches-ai-trading-co-pilot-to-streamline-crypto-research-and-execution/articleshow/133499740.cms" target="_blank">WazirX Launches AI Trading Co-Pilot For Crypto Research And Execution</a></h3>
-                        <div class="india-source">Tech-Economic Times</div>
-                        <div class="india-summary">Crypto exchange WazirX launched an AI-powered trading co-pilot integrated into its app and website that lets users query live prices, market news and macro trends. The tool also allows users to review portfolios and approve trades without switching between multiple screens.</div>
+                        <h3><a href="https://inc42.com/buzz/nitro-launches-ai-platform-to-let-shopify-merchants-build-apps-with-prompts/" target="_blank">Nitro Launches AI Platform To Let Shopify Merchants Build Apps With Prompts</a></h3>
+                        <div class="india-source">Inc42 Media</div>
+                        <div class="india-summary">Nitro has launched an AI-powered platform enabling Shopify merchants to build custom apps using simple prompts, reducing dependency on multiple third-party tools. The launch targets merchants managing complex ecommerce workflows.</div>
                     </div>
                 
                     
@@ -1218,16 +1284,16 @@
                         </div>
                     
                     <div class="india-item">
-                        <h3><a href="https://inc42.com/buzz/karnataka-suspends-amazon-instamart-bigbasket-food-licences-over-toxic-datura-listings/" target="_blank">Karnataka Suspends Amazon, Instamart, BigBasket Food Licences Over Toxic Datura Listings</a></h3>
-                        <div class="india-source">Inc42 Media</div>
-                        <div class="india-summary">Karnataka's food safety regulator suspended the food licences of Amazon, Swiggy Instamart and BigBasket after toxic Datura seeds were found listed for sale on their platforms. The action highlights growing regulatory scrutiny of quick-commerce and e-commerce food safety compliance.</div>
+                        <h3><a href="https://yourstory.com/2026/08/tn-launches-ai-deep-tech-push-with-new-initiatives" target="_blank">TN Launches AI, Deep-Tech Push With New State Initiatives</a></h3>
+                        <div class="india-source">YourStory</div>
+                        <div class="india-summary">Tamil Nadu's government announced multi-crore funds, infrastructure and public-private partnerships to boost AI and deep-tech adoption across sectors. The initiatives were presented in the State Legislative Assembly by Minister Kumar R.</div>
                     </div>
                 
                     
                     <div class="india-item">
-                        <h3><a href="https://economictimes.indiatimes.com/tech/technology/piyush-goyal-promises-bis-certification-relief-for-high-tech-sector-firms/articleshow/133512246.cms" target="_blank">Piyush Goyal Promises BIS Certification Relief For High-Tech Sector Firms</a></h3>
-                        <div class="india-source">Tech-Economic Times</div>
-                        <div class="india-summary">Commerce Minister Piyush Goyal said the government has instructed BIS and the Commerce Ministry to develop a framework easing certification requirements after Japanese companies raised concerns. The move aims to reduce compliance friction for high-tech manufacturers operating in India.</div>
+                        <h3><a href="https://inc42.com/buzz/amazon-flipkart-revise-seller-fees-penalties-ahead-of-festive-season/" target="_blank">Amazon, Flipkart Revise Seller Fees, Penalties Ahead Of Festive Season</a></h3>
+                        <div class="india-source">Inc42 Media</div>
+                        <div class="india-summary">Amazon and Flipkart have tightened seller rules and revised fee structures ahead of the festive shopping season. The changes could affect thousands of sellers on both marketplaces as they prepare for peak sales.</div>
                     </div>
                 
             
@@ -1240,37 +1306,37 @@
                 <span class="section-sub">X / Twitter</span>
             </h2>
             
-                <div class="twitter-opening">The timeline today is dominated by a mix of high-stakes politics and AI-fueled market anxiety, with Trump administration actions on mail-in voting, visas, and the Saudi nuclear deal generating heavy coverage alongside geopolitical flashpoints in Iran, Ukraine, and Syria. Meanwhile, the tech world buzzes with OpenAI leadership churn ahead of its IPO, new AI chip announcements, and continued fallout from Nvidia-adjacent market jitters. A somber note runs through the day as fans mourn Dolly Parton, while lighter fare on wine lists, self-tanners, and pampered pets rounds out the mix.</div>
+                <div class="twitter-opening">The timeline today is dominated by grief, geopolitics, and markets on edge. The sudden death of Dolly Parton has triggered an outpouring of tributes across the country music world and beyond, while Wall Street holds its breath ahead of Nvidia earnings and fresh US inflation data. Meanwhile, the drumbeat of Trump-era policy fights continues — from visa pauses and mail-in voting rules to court losses on grant conditions — set against a backdrop of simmering conflicts in Ukraine, the Caribbean, and the Middle East.</div>
                 <div class="discussions-grid">
                     
                         <div class="discussion">
-                            <div class="topic">Trump's mail-in voting rule and Supreme Court intervention</div>
+                            <div class="topic">Dolly Parton's death</div>
                             <div class="author">@Reuters</div>
-                            <div class="disc-summary">A federal judge declined to block Trump's new USPS mail-in voting rule despite finding a prior court order was violated, and the Supreme Court separately lifted a block on the executive order, though legal challenges are expected to continue.</div>
+                            <div class="disc-summary">Country music icon Dolly Parton has died at age 80, prompting tributes from fans and notable figures alike, with mourners gathering in Tennessee to remember her legacy.</div>
                         </div>
                     
                         <div class="discussion">
-                            <div class="topic">OpenAI leadership exodus ahead of IPO</div>
-                            <div class="author">@WSJ / TechCrunch</div>
-                            <div class="disc-summary">Chris Malone, a key executive overseeing OpenAI's data-center buildout, departed last week amid a broader reshuffling of the infrastructure org and a wave of leadership departures as the company eyes a public offering.</div>
-                        </div>
-                    
-                        <div class="discussion">
-                            <div class="topic">Saudi-US civil nuclear deal tied to Israel normalization</div>
-                            <div class="author">@Reuters / WSJ</div>
-                            <div class="disc-summary">Trump submitted a proposed civil nuclear agreement with Saudi Arabia to Congress, but insists it will only take effect if the kingdom normalizes relations with Israel, per administration officials.</div>
-                        </div>
-                    
-                        <div class="discussion">
-                            <div class="topic">Dolly Parton's death mourned</div>
-                            <div class="author">@Reuters / WSJ</div>
-                            <div class="disc-summary">Fans in Tennessee are mourning country superstar Dolly Parton, who died at age 80; WSJ notes she embodied a charming Southern archetype while being a formidable media and musical powerhouse.</div>
-                        </div>
-                    
-                        <div class="discussion">
-                            <div class="topic">Iran tensions and Strait of Hormuz</div>
+                            <div class="topic">Markets awaiting Nvidia earnings and US inflation data</div>
                             <div class="author">@Reuters</div>
-                            <div class="disc-summary">Iran restarted talks with Oman over managing the Strait of Hormuz amid US economic pressure, while Trump claimed the strait has been demined and warned Iran against re-mining it.</div>
+                            <div class="disc-summary">Wall Street closed higher as tech stocks rebounded ahead of Nvidia's results, while gold and the dollar traded in narrow ranges as investors await key US inflation figures.</div>
+                        </div>
+                    
+                        <div class="discussion">
+                            <div class="topic">Trump administration policy setbacks and crackdowns</div>
+                            <div class="author">@Reuters</div>
+                            <div class="disc-summary">A federal appeals court ruled Trump cannot condition transportation and homelessness grants on policy alignment, while the administration simultaneously paused global visa appointments and pushed a controversial mail-in voting rule.</div>
+                        </div>
+                    
+                        <div class="discussion">
+                            <div class="topic">US strikes and Caribbean/Middle East tensions</div>
+                            <div class="author">@Reuters</div>
+                            <div class="disc-summary">The US military confirmed a deadly strike on a vessel in the Caribbean as part of its anti-'narco-terrorist' campaign, drawing human rights criticism, while CIA Director Ratcliffe's Moscow visit and a Saudi nuclear deal tied to Israel normalization added to a busy geopolitical news cycle.</div>
+                        </div>
+                    
+                        <div class="discussion">
+                            <div class="topic">Mamdani's stance on Hindu nationalist event</div>
+                            <div class="author">@Reuters</div>
+                            <div class="disc-summary">NYC Mayor Zohran Mamdani said he opposes an upcoming city event featuring the leader of India's Hindu nationalist group linked to the ruling BJP, sparking political discussion.</div>
                         </div>
                     
                 </div>
@@ -1278,21 +1344,19 @@
                     <div class="breaking-news">
                         <strong>Breaking &mdash;</strong>
                         
-                            US Supreme Court lifted a court order blocking Trump's executive order restricting mail-in ballots ahead of November elections.; 
+                            Country music legend Dolly Parton has died at age 80.; 
                         
-                            Sen. Darline Graham, backed by Trump, won the runoff in South Carolina's special Republican primary.; 
+                            At least 15 infants were killed in a fire at a state-run hospital in Islamabad, Pakistan, reportedly caused by an air conditioning fault.; 
                         
-                            Trump submitted a civil nuclear energy agreement with Saudi Arabia to Congress, conditioned on Israel normalization.; 
+                            The US military struck a vessel in the Caribbean, killing four people.; 
                         
-                            Trump administration paused visa appointments worldwide amid immigration crackdown.; 
+                            A federal appeals court ruled the Trump administration cannot impose policy conditions on transportation and homelessness grants.; 
                         
-                            Syria's Kurdish-led SDF has dissolved as part of integration with Damascus.; 
+                            Darline Graham, sister of the late Senator Lindsey Graham, won the Republican Senate primary runoff in South Carolina with Trump's backing.; 
                         
-                            Country music icon Dolly Parton has died at age 80.; 
+                            The Trump administration has paused visa appointments for applicants worldwide amid its immigration crackdown.; 
                         
-                            US Secret Service confirmed awareness of an Iranian video threat against Barron Trump.; 
-                        
-                            OpenAI executive Chris Malone departs amid leadership reshuffle ahead of planned IPO.
+                            A massive flash flood in Nepal has washed away villages near the Tibet border, with officials warning of heavy casualties.
                         
                     </div>
                 
@@ -1311,11 +1375,11 @@
                         <div class="product">
                             <span class="product-number">1</span>
                             
-                                <div class="product-icon">A</div>
+                                <div class="product-icon">M</div>
                                 <div class="product-content">
-                                    <h3><a href="https://www.producthunt.com/products/akta-pro" target="_blank">akta.pro</a></h3>
-                                    <div class="tagline">Private company data and signals API for the agent economy</div>
-                                    <div class="description">akta.pro delivers structured private company data and real-time signals through a developer-friendly API, built specifically for AI agents that need reliable business intelligence to make decisions. As autonomous agents increasingly handle research, sales, and investment tasks, this kind of machine-readable data pipeline could become essential infrastructure for the agent economy.</div>
+                                    <h3><a href="https://www.producthunt.com/products/apple" target="_blank">Mac mini</a></h3>
+                                    <div class="tagline">Now with M6 and M5 Pro chips</div>
+                                    <div class="description">Apple's compact desktop gets a serious power boost with the new M6 and M5 Pro chip options, squeezing pro-level performance into its palm-sized frame. It's a compelling pick for creators and developers who want desktop-class speed without sacrificing desk space.</div>
                                 </div>
                             
                         </div>
@@ -1323,40 +1387,40 @@
                         <div class="product">
                             <span class="product-number">2</span>
                             
-                                <div class="product-icon">L</div>
-                                <h3><a href="https://www.producthunt.com/products/localdock" target="_blank">Localdock</a></h3>
-                                <div class="tagline">Every local project gets a real address.</div>
-                                <div class="description">Localdock gives local development projects a persistent, memorable address, eliminating the hassle of juggling random ports and forgotten localhost URLs. It's a small but clever fix for a daily annoyance that developers have simply learned to live with.</div>
+                                <div class="product-icon">C</div>
+                                <h3><a href="https://www.producthunt.com/products/chatgpt-ad-library" target="_blank">ChatGPT Ad Library</a></h3>
+                                <div class="tagline">See every ad running inside ChatGPT</div>
+                                <div class="description">This tool pulls back the curtain on advertising within ChatGPT, letting marketers and curious users browse every ad currently being served in the platform. As AI chat interfaces become the next big ad frontier, this kind of transparency tool is set to be essential for competitive research.</div>
                             
                         </div>
                     
                         <div class="product">
                             <span class="product-number">3</span>
                             
-                                <div class="product-icon">T</div>
-                                <h3><a href="https://www.producthunt.com/products/trama-mac-automation-in-plain-language" target="_blank">Trama</a></h3>
-                                <div class="tagline">Create macOS native automations using plain language</div>
-                                <div class="description">Trama lets Mac users build native automations simply by describing what they want in everyday language, no scripting or AppleScript knowledge required. It's a promising step toward making powerful OS-level automation accessible to everyone, not just power users.</div>
+                                <div class="product-icon">I</div>
+                                <h3><a href="https://www.producthunt.com/products/ify-2" target="_blank">ify</a></h3>
+                                <div class="tagline">Resolution AI that works on top of your existing helpdesk</div>
+                                <div class="description">ify layers intelligent, automated resolution capabilities directly onto your current helpdesk software, so support teams can close tickets faster without ripping and replacing their existing stack. It's a smart bet for companies wanting AI efficiency gains without the pain of a full platform migration.</div>
                             
                         </div>
                     
                         <div class="product">
                             <span class="product-number">4</span>
                             
-                                <div class="product-icon">A</div>
-                                <h3><a href="https://www.producthunt.com/products/electronic-materials-office-altar-i" target="_blank">Altar II</a></h3>
-                                <div class="tagline">The mechanical keyboard Apple never made</div>
-                                <div class="description">Altar II is a mechanical keyboard designed to feel like a natural extension of the Apple ecosystem, blending premium materials and satisfying tactile feedback with Mac-friendly aesthetics and functionality. For typists who love mechanical switches but wish Apple made a keyboard worthy of their setup, this fills a real gap in the market.</div>
+                                <div class="product-icon">K</div>
+                                <h3><a href="https://www.producthunt.com/products/knack" target="_blank">Knack MCP Server</a></h3>
+                                <div class="tagline">The HIPAA-compliant backend for AI builders</div>
+                                <div class="description">Knack MCP Server gives developers a ready-made, HIPAA-compliant backend specifically designed for building AI applications that handle sensitive health data. As healthcare AI adoption accelerates, this kind of compliance-first infrastructure removes a major barrier for builders in regulated industries.</div>
                             
                         </div>
                     
                         <div class="product">
                             <span class="product-number">5</span>
                             
-                                <div class="product-icon">D</div>
-                                <h3><a href="https://www.producthunt.com/products/dropstone-2" target="_blank">Dropstone</a></h3>
-                                <div class="tagline">The AI runtime that remembers, learns, and acts everywhere</div>
-                                <div class="description">Dropstone is an AI runtime designed to maintain memory and context across different tools and environments, allowing it to learn from past interactions and take action wherever it's deployed. This persistent, cross-platform intelligence could be a key building block for making AI agents genuinely useful over the long term rather than starting from scratch every session.</div>
+                                <div class="product-icon">N</div>
+                                <h3><a href="https://www.producthunt.com/products/nimbia" target="_blank">Nimbia</a></h3>
+                                <div class="tagline">AI screen-sharing calls for user onboarding</div>
+                                <div class="description">Nimbia uses AI to conduct live, screen-sharing onboarding calls with new users, guiding them through products in real time without requiring a human rep on every call. It's a clever way for companies to scale personalized onboarding experiences while keeping support costs in check.</div>
                             
                         </div>
                     
@@ -1376,25 +1440,25 @@
                     <div class="paper paper-featured">
                         <div class="paper-content">
                             
-                            <span class="paper-category cat-ml-theory">ML Theory</span>
-                            <h3><a href="https://huggingface.co/papers/2608.22876" target="_blank">The Mask Is Not the Model: Auditing Prefix Invariance in Attention, State-Space, and Hybrid Sequence Models</a></h3>
+                            <span class="paper-category cat-safety">Safety</span>
+                            <h3><a href="https://arxiv.org/abs/2608.23875" target="_blank">AI Finds A Way</a></h3>
                             <div class="paper-meta">
-                                <span class="paper-lab">Independent/Academic</span>
-                                 &middot; ['Taebong Kim', 'Youngsik Hong', 'Minsik Kim', 'Sunyoung Choi', 'Jaewon Jang']
+                                <span class="paper-lab">DeepMind/collaborators</span>
+                                 &middot; Aaron Dharna, Cong Lu, Ryan Sullivan, Joel Lehman, Victoria Krakovna, Jeff Clune
                             </div>
                             
                             <div class="paper-why-label">Why it matters</div>
                             <ol class="paper-why-points">
                                 
-                                <li>Formalizes prefix invariance, the basic causal guarantee that representations at position t cannot depend on future tokens, across model families</li>
+                                <li>Surveys and systematizes cases where AI systems find creative unanticipated ways to satisfy objectives, including reward hacking and specification gaming</li>
                                 
-                                <li>Introduces a lightweight audit needing only two forward passes with no training or gradients to localize where causality actually breaks</li>
+                                <li>Co-authored by Jeff Clune and Victoria Krakovna, leading voices in AI safety and open-ended search from DeepMind and academia</li>
                                 
-                                <li>Shows attention-mask inspection alone is insufficient because leaks can silently occur through scans or normalization layers in SSMs and hybrids</li>
+                                <li>Compiles concrete documented exploits across RL, LLMs, and evolutionary algorithms, giving credible empirical grounding rather than speculation</li>
                                 
-                                <li>Matters to anyone building or deploying state-space and hybrid architectures like Mamba variants where causality bugs are hard to detect by design review</li>
+                                <li>Directly relevant to every lab deploying RLHF, agentic systems, or autonomous optimization pipelines that risk specification gaming</li>
                                 
-                                <li>Provides a practical debugging tool that could catch subtle correctness bugs in production sequence models before they cause silent evaluation or deployment failures</li>
+                                <li>Frames a taxonomy and mitigation directions that will likely shape how safety teams design reward functions and evaluation going forward</li>
                                 
                             </ol>
                             
@@ -1404,9 +1468,61 @@
             
         </section>
 
+        <!-- Section: This Day -->
+        <section class="section">
+            <h2 class="section-header">
+                <span class="section-icon">&#128329;</span> This Day
+                <span class="section-sub">Significance &amp; History</span>
+            </h2>
+            
+                
+                <div class="thisday-block">
+                    <div class="thisday-occasion">Onam (Thiruvonam) — Shravana Shukla Trayodashi</div>
+                    
+                    <div class="thisday-panchang">Shukla Paksha Trayodashi, Shravana month, Vikram Samvat 2083 (Wednesday, Shravana nakshatra)</div>
+                    
+                    <div class="thisday-story">
+                        <p>Today falls on Shukla Paksha Trayodashi of the Shravana month, and in Kerala it is Thiruvonam, the central day of the ten-day Onam festival.</p><p>Tradition holds that the Asura king Mahabali once ruled the earth so justly that his kingdom knew no poverty, injustice, or falsehood, and his people wanted for nothing.</p><p>Threatened by his growing power, the gods approached Lord Vishnu, who descended as the dwarf Brahmin Vamana and asked the ever-generous king for only as much land as could be covered in three steps.</p><p>Mahabali agreed despite his guru's warning, and Vamana then grew into the cosmic Trivikrama, covering the earth with one stride and the heavens with the next.</p><p>With no ground left for the third step, Mahabali bowed and offered his own head, and the pleased Vishnu pressed him gently down to the netherworld while granting him one wish, to return each year and see his people again.</p><p>Onam marks that promised homecoming, and the day asks people to welcome Mahabali with the same humility, honesty, and generosity that made his reign a golden age worth remembering.</p>
+                    </div>
+                </div>
+                
+                
+                <div class="thisday-history">
+                    <div class="thisday-label">On This Day in History</div>
+                    
+                    <div class="history-item">
+                        <div class="history-year">1346</div>
+                        <div class="history-content">
+                            <div class="history-event">At the Battle of Crécy in northern France, English longbowmen under Edward III inflicted a crushing defeat on the larger French force of King Philip VI.</div>
+                            <div class="history-why">It proved that disciplined infantry with the longbow could shatter armored cavalry, reshaping medieval warfare and setting the tone for the Hundred Years' War.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-year">1789</div>
+                        <div class="history-content">
+                            <div class="history-event">France's National Assembly adopted the Declaration of the Rights of Man and of the Citizen, a seventeen-article charter of liberty and equality drafted with input from Lafayette and Thomas Jefferson.</div>
+                            <div class="history-why">It became a founding text of modern human-rights language, later echoing through the Universal Declaration of Human Rights and constitutions worldwide.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-year">1920</div>
+                        <div class="history-content">
+                            <div class="history-event">The Nineteenth Amendment to the U.S. Constitution took effect, barring the denial of voting rights on the basis of sex.</div>
+                            <div class="history-why">It enfranchised millions of American women overnight and remains a cornerstone reference point for global suffrage and equality movements.</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+            
+        </section>
+
         <!-- Footer -->
         <footer class="footer">
-            Generated on 2026-08-26 02:08 UTC &middot; Powered by Claude
+            Generated on 2026-08-26 08:17 UTC &middot; Powered by Claude
         </footer>
     </div>
 </body>
