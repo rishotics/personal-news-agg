@@ -137,16 +137,29 @@ def main():
     parser.add_argument("--section", choices=list(SECTION_MAP.keys()), help="Run a single section only")
     parser.add_argument("--no-telegram", action="store_true", help="Skip Telegram delivery")
     parser.add_argument("--no-mongo", action="store_true", help="Skip MongoDB storage")
+    parser.add_argument(
+        "--skip-if-exists",
+        action="store_true",
+        help="Exit early if today's edition was already published (for delayed/backup runs)",
+    )
     args = parser.parse_args()
 
     now = datetime.now(timezone.utc)
     edition_date = now.strftime("%B %d, %Y")
     date_str = now.strftime("%Y-%m-%d")
 
-    # Check for existing edition
+    # Check for existing edition. GitHub's scheduler can deliver a cron hours
+    # late, so a run that arrives after the edition is already out should stand
+    # down rather than burn API calls and send a duplicate Telegram.
     if not args.no_mongo and not args.section:
         existing = mongo_store.get_edition_by_date(date_str)
         if existing:
+            if args.skip_if_exists:
+                logger.info(
+                    "Edition for %s already published (edition %s). Nothing to do.",
+                    date_str, existing.get("edition_number", "?"),
+                )
+                return
             logger.warning("Edition for %s already exists. Generating a new one.", date_str)
 
     # Fetch market data (not a "section" — always runs, no Claude call)

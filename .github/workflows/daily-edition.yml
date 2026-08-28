@@ -2,8 +2,13 @@ name: Daily Edition
 
 on:
   schedule:
-    # 00:30 UTC = 06:00 IST
-    - cron: "30 0 * * *"
+    # Minutes are deliberately odd and off the hour/half-hour: GitHub's shared
+    # scheduler is most contended at :00 and :30, where this workflow was
+    # regularly delivered 1.5-9.5 hours late.
+    # 00:23 UTC = 05:53 IST (primary)
+    - cron: "23 0 * * *"
+    # 03:47 UTC = 09:17 IST (backup; stands down if the primary already ran)
+    - cron: "47 3 * * *"
   workflow_dispatch:
     inputs:
       no_telegram:
@@ -50,11 +55,18 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
         run: |
-          if [ "${{ inputs.no_telegram }}" = "true" ]; then
-            python main.py --no-telegram
-          else
-            python main.py
+          ARGS=""
+          # Any scheduled run stands down if today's edition is already out.
+          # Whichever of the two crons lands first publishes; the other exits
+          # in seconds. Manual dispatch always regenerates.
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            ARGS="--skip-if-exists"
           fi
+          if [ "${{ inputs.no_telegram }}" = "true" ]; then
+            ARGS="$ARGS --no-telegram"
+          fi
+          echo "Running: python main.py $ARGS"
+          python main.py $ARGS
 
       - name: Commit and push if changed
         run: |
