@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -17,6 +18,13 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 MONGODB_URI = os.getenv("MONGODB_URI", "")
 X_BEARER_TOKEN = os.getenv("X_BEARER_TOKEN", "")
 NEWS_API_KEY = os.getenv("NEWS_API_KEY", "")
+
+# The paper is read in India, so the edition date, the This Day panchang, and
+# the yesterday-lookup key are all reckoned in IST rather than UTC. Without
+# this, a run scheduled before 05:30 IST would date the paper to the previous
+# day and fetch the wrong day's panchang. India has never observed DST, so a
+# fixed offset is correct and avoids a tzdata dependency.
+EDITION_TZ = timezone(timedelta(hours=5, minutes=30))
 
 # Claude
 CLAUDE_MODEL = "claude-sonnet-5"

@@ -2,13 +2,17 @@ name: Daily Edition
 
 on:
   schedule:
-    # Minutes are deliberately odd and off the hour/half-hour: GitHub's shared
-    # scheduler is most contended at :00 and :30, where this workflow was
-    # regularly delivered 1.5-9.5 hours late.
-    # 00:23 UTC = 05:53 IST (primary)
-    - cron: "23 0 * * *"
-    # 03:47 UTC = 09:17 IST (backup; stands down if the primary already ran)
-    - cron: "47 3 * * *"
+    # GitHub's scheduler is best-effort and runs late: this workflow was
+    # delivered ~90 minutes late on a normal day and 9h37m late once. So the
+    # cron fires well BEFORE the paper is wanted, and the odd minutes avoid
+    # the heavily contended :00 and :30 slots.
+    # 22:47 UTC = 04:17 IST next day. Even ~90 min late it lands before 06:00
+    # IST. The edition is dated in IST (see config.EDITION_TZ), so a run in the
+    # 22:00-24:00 UTC window correctly dates itself to the upcoming IST day.
+    - cron: "47 22 * * *"
+    # 01:53 UTC = 07:23 IST. Backup for a very late or dropped primary; stands
+    # down in seconds if the edition is already out.
+    - cron: "53 1 * * *"
   workflow_dispatch:
     inputs:
       no_telegram:

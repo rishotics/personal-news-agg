@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 
 from jinja2 import Environment, FileSystemLoader
 
-from config import OUTPUT_DIR, TEMPLATES_DIR, MAX_SECTION_FAILURES
+from config import OUTPUT_DIR, TEMPLATES_DIR, MAX_SECTION_FAILURES, EDITION_TZ
 from sections import world_news, twitter_feed, product_hunt, market_data, ai_research, funding_rounds, yc_batch, india_startups, this_day
 from services import mongo_store, telegram_bot
 
@@ -144,7 +144,7 @@ def main():
     )
     args = parser.parse_args()
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(EDITION_TZ)
     edition_date = now.strftime("%B %d, %Y")
     date_str = now.strftime("%Y-%m-%d")
 
@@ -200,7 +200,7 @@ def main():
         # Rename 'items' key to avoid clash with dict.items() in Jinja2
         "india_news": sections.get("india_startups", {}).get("items", []),
         "markets": markets.get("items", []),
-        "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
+        "generated_at": now.strftime("%Y-%m-%d %H:%M IST"),
     }
 
     # Health check. A single-section run is expected to "fail" the others, so

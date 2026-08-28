@@ -7,7 +7,7 @@ from difflib import SequenceMatcher
 import feedparser
 import requests
 
-from config import NEWS_BUCKETS, NEWS_API_KEY, MAX_ARTICLES_BEFORE_DEDUP
+from config import NEWS_BUCKETS, NEWS_API_KEY, MAX_ARTICLES_BEFORE_DEDUP, EDITION_TZ
 from services.claude_client import summarize
 from services.mongo_store import get_edition_by_date
 
@@ -108,7 +108,7 @@ def _deduplicate(articles: list[Article]) -> list[Article]:
 
 def _previous_headlines() -> str:
     """Yesterday's headlines, so today's edition doesn't repeat them."""
-    yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
+    yesterday = (datetime.now(EDITION_TZ) - timedelta(days=1)).strftime("%Y-%m-%d")
     try:
         prev_edition = get_edition_by_date(yesterday)
         if prev_edition:

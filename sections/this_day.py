@@ -1,7 +1,8 @@
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 
+from config import EDITION_TZ
 from services.claude_client import search_and_summarize
 
 logger = logging.getLogger(__name__)
@@ -25,7 +26,7 @@ def fetch() -> dict:
     shift against the Gregorian date every year. This uses web search rather
     than model recall so the panchang details are grounded rather than guessed.
     """
-    now = datetime.now(timezone.utc)
+    now = datetime.now(EDITION_TZ)
     date_long = now.strftime("%B %d, %Y")
     day_month = now.strftime("%B %d")
 
