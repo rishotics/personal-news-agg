@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 
 from jinja2 import Environment, FileSystemLoader
 
-from config import OUTPUT_DIR, TEMPLATES_DIR, MAX_SECTION_FAILURES, EDITION_TZ
+from config import OUTPUT_DIR, TEMPLATES_DIR, EDITION_TZ
 from sections import world_news, twitter_feed, product_hunt, market_data, ai_research, funding_rounds, yc_batch, india_startups, this_day
 from services import mongo_store, telegram_bot
 
@@ -30,17 +30,27 @@ SECTION_MAP = {
 }
 
 
-def run_section(name: str) -> dict:
-    """Run a single section with error handling."""
+def run_section(name: str, attempts: int = 2) -> dict:
+    """Run a single section, retrying once before giving up.
+
+    Most section failures are transient — a feed timing out, a rate limit, a
+    malformed JSON reply. Retrying costs one extra call and recovers most of
+    them, which matters more than saving the call: a missing section is a hole
+    in the paper.
+    """
     display_name, fetcher = SECTION_MAP[name]
-    logger.info("Fetching section: %s", display_name)
-    try:
-        result = fetcher()
-        result["status"] = "success"
-        return result
-    except Exception as e:
-        logger.error("Section %s failed: %s", name, e, exc_info=True)
-        return {"status": "error", "error": str(e)}
+    last_error = None
+    for attempt in range(1, attempts + 1):
+        logger.info("Fetching section: %s (attempt %d/%d)", display_name, attempt, attempts)
+        try:
+            result = fetcher()
+            result["status"] = "success"
+            return result
+        except Exception as e:
+            last_error = e
+            logger.warning("Section %s attempt %d/%d failed: %s", name, attempt, attempts, e)
+    logger.error("Section %s failed after %d attempts: %s", name, attempts, last_error, exc_info=True)
+    return {"status": "error", "error": str(last_error)}
 
 
 def render_html(context: dict) -> str:
@@ -203,17 +213,21 @@ def main():
         "generated_at": now.strftime("%Y-%m-%d %H:%M IST"),
     }
 
-    # Health check. A single-section run is expected to "fail" the others, so
-    # only judge a full edition.
+    # Getting the paper out beats withholding it. A missing section renders as
+    # "unavailable" and the rest still publishes; only a total wipeout (nothing
+    # to read at all) withholds, so the site keeps the last good edition rather
+    # than showing an empty page.
     failed = [n for n, s in sections.items() if s.get("status") != "success"]
-    degraded = not args.section and len(failed) > MAX_SECTION_FAILURES
+    degraded = not args.section and len(failed) == len(SECTION_MAP)
     if failed:
-        logger.warning("%d/%d sections failed: %s", len(failed), len(SECTION_MAP), ", ".join(failed))
+        logger.warning(
+            "%d/%d sections failed: %s (publishing the rest)",
+            len(failed), len(SECTION_MAP), ", ".join(failed),
+        )
     if degraded:
         logger.error(
-            "DEGRADED: %d of %d sections failed (threshold %d). Not publishing "
-            "over the last good edition.",
-            len(failed), len(SECTION_MAP), MAX_SECTION_FAILURES,
+            "TOTAL FAILURE: all %d sections failed. Keeping the last good edition.",
+            len(SECTION_MAP),
         )
 
     html = render_html(context)
@@ -255,9 +269,8 @@ def main():
         if degraded:
             telegram_bot.send_summary(
                 f"<b>Daily Digest FAILED - {edition_date}</b>\n\n"
-                f"{len(failed)} of {len(SECTION_MAP)} sections failed: "
-                f"{', '.join(failed)}\n\n"
-                "Edition not published; the site still shows the last good one."
+                f"All {len(SECTION_MAP)} sections failed, so nothing was published.\n"
+                "The site still shows the last good edition."
             )
             logger.info("Sent failure alert to Telegram")
         else:

@@ -2,17 +2,27 @@ name: Daily Edition
 
 on:
   schedule:
-    # GitHub's scheduler is best-effort and runs late: this workflow was
-    # delivered ~90 minutes late on a normal day and 9h37m late once. So the
-    # cron fires well BEFORE the paper is wanted, and the odd minutes avoid
-    # the heavily contended :00 and :30 slots.
-    # 22:47 UTC = 04:17 IST next day. Even ~90 min late it lands before 06:00
-    # IST. The edition is dated in IST (see config.EDITION_TZ), so a run in the
-    # 22:00-24:00 UTC window correctly dates itself to the upcoming IST day.
-    - cron: "47 22 * * *"
-    # 01:53 UTC = 07:23 IST. Backup for a very late or dropped primary; stands
-    # down in seconds if the edition is already out.
-    - cron: "53 1 * * *"
+    # GitHub's scheduler is best-effort. Observed behaviour on this repo:
+    # ~90 min late on a good day, 9h37m late once, and outright dropped twice.
+    # A single cron cannot hit a 07:00 IST deadline against that.
+    #
+    # So fire MANY triggers across the 03:00-07:10 IST window. --skip-if-exists
+    # makes every run after the first a no-op that exits in seconds, so the
+    # first trigger GitHub actually delivers publishes and the rest cost
+    # nothing. One dropped or delayed trigger no longer means no newspaper.
+    - cron: "31 21 * * *"   # 03:01 IST
+    - cron: "49 21 * * *"   # 03:19 IST
+    - cron: "11 22 * * *"   # 03:41 IST
+    - cron: "33 22 * * *"   # 04:03 IST
+    - cron: "51 22 * * *"   # 04:21 IST
+    - cron: "13 23 * * *"   # 04:43 IST
+    - cron: "37 23 * * *"   # 05:07 IST
+    - cron: "59 23 * * *"   # 05:29 IST
+    - cron: "21 0 * * *"    # 05:51 IST
+    - cron: "43 0 * * *"    # 06:13 IST
+    - cron: "7 1 * * *"     # 06:37 IST
+    - cron: "29 1 * * *"    # 06:59 IST
+    - cron: "53 1 * * *"    # 07:23 IST (last resort)
   workflow_dispatch:
     inputs:
       no_telegram:

@@ -29,11 +29,6 @@ EDITION_TZ = timezone(timedelta(hours=5, minutes=30))
 # Claude
 CLAUDE_MODEL = "claude-sonnet-5"
 
-# Health thresholds. One dead RSS feed shouldn't kill the edition, but a
-# systemic failure (retired model, bad API key, network) should go red rather
-# than quietly publishing a near-empty newspaper over a good one.
-MAX_SECTION_FAILURES = 2
-
 # World news, bucketed by topic. Each bucket gets its own Claude call and a
 # guaranteed number of slots, so finance and geopolitics can't be crowded out
 # by whichever tech story happened to look most dramatic that morning.
