@@ -164,13 +164,28 @@ def main():
     if not args.no_mongo and not args.section:
         existing = mongo_store.get_edition_by_date(date_str)
         if existing:
-            if args.skip_if_exists:
+            prior = existing.get("sections") or {}
+            prior_ok = sum(
+                1 for v in prior.values()
+                if isinstance(v, dict) and v.get("status") == "success"
+            )
+            if args.skip_if_exists and prior_ok > 0:
                 logger.info(
-                    "Edition for %s already published (edition %s). Nothing to do.",
-                    date_str, existing.get("edition_number", "?"),
+                    "Edition for %s already published (edition %s, %d/%d sections). Nothing to do.",
+                    date_str, existing.get("edition_number", "?"), prior_ok, len(prior),
                 )
                 return
-            logger.warning("Edition for %s already exists. Generating a new one.", date_str)
+            if args.skip_if_exists:
+                # A record exists but every section in it failed, so there is
+                # nothing readable behind it. Never let a broken edition veto a
+                # working run — that turns one bad writer into a silent outage.
+                logger.warning(
+                    "Edition for %s exists but has 0/%d successful sections "
+                    "(from %s). Republishing over it.",
+                    date_str, len(prior), existing.get("html_path", "unknown source"),
+                )
+            else:
+                logger.warning("Edition for %s already exists. Generating a new one.", date_str)
 
     # Fetch market data (not a "section" — always runs, no Claude call)
     logger.info("Fetching market data")
